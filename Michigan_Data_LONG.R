@@ -32,7 +32,13 @@ MEAP_2013_2014_SGP[,SCALE_SCORE:=as.numeric(SCALE_SCORE)]
 
 Michigan_Data_LONG <- rbindlist(list(MEAP_2012_2013_SGP, MEAP_2013_2014_SGP, MME_2012_2013_SGP, MME_2013_2014_SGP))
 setnames(Michigan_Data_LONG, 1, "ID")
+
+
+### Deal with duplicates
+
+setkey(Michigan_Data_LONG, VALID_CASE, CONTENT_AREA, YEAR, ID, GRADE, SCALE_SCORE)
 setkey(Michigan_Data_LONG, VALID_CASE, CONTENT_AREA, YEAR, ID)
+Michigan_Data_LONG[which(duplicated(Michigan_Data_LONG))-1, VALID_CASE:="INVALID_CASE"]
 
 ### Save results
 
