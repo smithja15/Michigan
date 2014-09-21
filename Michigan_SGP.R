@@ -103,4 +103,11 @@ MICHIGAN.2013_2014.config <- list(
 MICHIGAN.config <- c(MICHIGAN.2012_2013.config, MICHIGAN.2013_2014.config)
 
 
+### Step 1: prepareSGP
+
+Michigan_SGP <- prepareSGP(Michigan_Data_LONG)
+
+
+
+
 
