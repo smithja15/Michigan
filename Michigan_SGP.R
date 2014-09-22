@@ -108,6 +108,30 @@ MICHIGAN.config <- c(MICHIGAN.2012_2013.config, MICHIGAN.2013_2014.config)
 Michigan_SGP <- prepareSGP(Michigan_Data_LONG)
 
 
+### Step 2: analyzeSGP
+
+Michigan_SGP <- analyzeSGP(
+		sgp_object=Michigan_SGP,
+		sgp.percentiles=TRUE,
+		sgp.projections=FALSE,
+		sgp.projections.lagged=FALSE,
+		sgp.percentiles.baseline=FALSE,
+		sgp.projections.baseline=FALSE,
+		sgp.projections.lagged.baseline=FALSE,
+		sgp.config=MICHIGAN.config,
+		parallel.config=list(BACKEND="PARALLEL", WORKERS=list(PERCENTILES=20)))
 
 
+### Step 3: combineSGP
 
+Michigan_SGP <- combineSGP(Michigan_SGP)
+
+
+### Step 4: outputSGP ### Outputs text delimited files (both LONG and WIDE) of data as well as Rdata files.
+
+outputSGP(Michigan_SGP)
+
+
+### Step 5: Save results
+
+save(Michigan_SGP, file="Data/Michigan_SGP.Rdata")
