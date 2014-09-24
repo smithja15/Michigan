@@ -18,21 +18,21 @@ load("Data/Michigan_Data_LONG.Rdata")
 
 MICHIGAN.2012_2013.config <- list(
 	MATHEMATICS.2012_2013.config=list(
-                sgp.content.areas=c('MATHEMATICS', 'MATHEMATICS'),
-                sgp.panel.years=c('2011_2012', '2012_2013'),
-                sgp.grade.sequences=list(c('3', '4'), c('4', '5'), c('5', '6'), c('6', '7'), c('7', '8'))),
+                sgp.content.areas=c('MATHEMATICS', 'MATHEMATICS', 'MATHEMATICS', 'MATHEMATICS'),
+                sgp.panel.years=c('2009_2010', '2010_2011', '2011_2012', '2012_2013'),
+                sgp.grade.sequences=list(c('3', '4'), c('3', '4', '5'), c('3', '4', '5', '6'), c('4', '5', '6', '7'), c('5', '6', '7', '8'))),
 	MATHEMATICS.MME.2012_2013.config=list(
-                sgp.content.areas=c('MATHEMATICS', 'MATHEMATICS'),
-                sgp.panel.years=c('2009_2010', '2012_2013'),
-                sgp.grade.sequences=list(c('8', 'EOCT'))),
+                sgp.content.areas=c('MATHEMATICS', 'MATHEMATICS', 'MATHEMATICS', 'MATHEMATICS'),
+                sgp.panel.years=c('2007_2008', '2008_2009', '2009_2010', '2012_2013'),
+                sgp.grade.sequences=list(c('6', '7', '8', 'EOCT'))),
 	READING.2012_2013.config=list(
-                sgp.content.areas=c('READING', 'READING'),
-                sgp.panel.years=c('2011_2012', '2012_2013'),
-                sgp.grade.sequences=list(c('3', '4'), c('4', '5'), c('5', '6'), c('6', '7'), c('7', '8'))),
+                sgp.content.areas=c('READING', 'READING', 'READING', 'READING'),
+                sgp.panel.years=c('2009_2010', '2010_2011', '2011_2012', '2012_2013'),
+                sgp.grade.sequences=list(c('3', '4'), c('3', '4', '5'), c('3', '4', '5', '6'), c('4', '5', '6', '7'), c('5', '6', '7', '8'))),
 	READING.MME.2012_2013.config=list(
-                sgp.content.areas=c('READING', 'READING'),
-                sgp.panel.years=c('2009_2010', '2012_2013'),
-                sgp.grade.sequences=list(c('8', 'EOCT'))),
+                sgp.content.areas=c('READING', 'READING', 'READING', 'READING'),
+                sgp.panel.years=c('2007_2008', '2008_2009', '2009_2010', '2012_2013'),
+                sgp.grade.sequences=list(c('6', '7', '8', 'EOCT'))),
 	WRITING.2012_2013.config=list(
                 sgp.content.areas=c('WRITING', 'WRITING'),
                 sgp.panel.years=c('2009_2010', '2012_2013'),
@@ -60,21 +60,21 @@ MICHIGAN.2012_2013.config <- list(
 
 MICHIGAN.2013_2014.config <- list(
 	MATHEMATICS.2013_2014.config=list(
-                sgp.content.areas=c('MATHEMATICS', 'MATHEMATICS'),
-                sgp.panel.years=c('2012_2013', '2013_2014'),
-                sgp.grade.sequences=list(c('3', '4'), c('4', '5'), c('5', '6'), c('6', '7'), c('7', '8'))),
+                sgp.content.areas=c('MATHEMATICS', 'MATHEMATICS', 'MATHEMATICS', 'MATHEMATICS'),
+                sgp.panel.years=c('2010_2011', '2011_2012', '2012_2013', '2013_2014'),
+                sgp.grade.sequences=list(c('3', '4'), c('3', '4', '5'), c('3', '4', '5', '6'), c('4', '5', '6', '7'), c('5', '6', '7', '8'))),
 	MATHEMATICS.MME.2013_2014.config=list(
-                sgp.content.areas=c('MATHEMATICS', 'MATHEMATICS'),
-                sgp.panel.years=c('2010_2011', '2013_2014'),
-                sgp.grade.sequences=list(c('8', 'EOCT'))),
+                sgp.content.areas=c('MATHEMATICS', 'MATHEMATICS', 'MATHEMATICS', 'MATHEMATICS'),
+                sgp.panel.years=c('2008_2009', '2009_2010', '2010_2011', '2013_2014'),
+                sgp.grade.sequences=list(c('6', '7', '8', 'EOCT'))),
 	READING.2013_2014.config=list(
-                sgp.content.areas=c('READING', 'READING'),
-                sgp.panel.years=c('2012_2013', '2013_2014'),
-                sgp.grade.sequences=list(c('3', '4'), c('4', '5'), c('5', '6'), c('6', '7'), c('7', '8'))),
+                sgp.content.areas=c('READING', 'READING', 'READING', 'READING'),
+                sgp.panel.years=c('2010_2011', '2011_2012', '2012_2013', '2013_2014'),
+                sgp.grade.sequences=list(c('3', '4'), c('3', '4', '5'), c('3', '4', '5', '6'), c('4', '5', '6', '7'), c('5', '6', '7', '8'))),
 	READING.MME.2013_2014.config=list(
-                sgp.content.areas=c('READING', 'READING'),
-                sgp.panel.years=c('2010_2011', '2013_2014'),
-                sgp.grade.sequences=list(c('8', 'EOCT'))),
+                sgp.content.areas=c('READING', 'READING', 'READING', 'READING'),
+                sgp.panel.years=c('2008_2009', '2009_2010', '2010_2011', '2013_2014'),
+                sgp.grade.sequences=list(c('6', '7', '8', 'EOCT'))),
 	WRITING.2013_2014.config=list(
                 sgp.content.areas=c('WRITING', 'WRITING'),
                 sgp.panel.years=c('2010_2011', '2013_2014'),
@@ -119,20 +119,4 @@ Michigan_SGP <- analyzeSGP(
 		sgp.projections.baseline=FALSE,
 		sgp.projections.lagged.baseline=FALSE,
 		sgp.config=MICHIGAN.config,
-		get.cohort.data.info=TRUE,
 		parallel.config=list(BACKEND="PARALLEL", WORKERS=list(PERCENTILES=20)))
-
-
-### Step 3: combineSGP
-
-Michigan_SGP <- combineSGP(Michigan_SGP)
-
-
-### Step 4: outputSGP ### Outputs text delimited files (both LONG and WIDE) of data as well as Rdata files.
-
-outputSGP(Michigan_SGP)
-
-
-### Step 5: Save results
-
-save(Michigan_SGP, file="Data/Michigan_SGP.Rdata")
