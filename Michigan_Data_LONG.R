@@ -19,9 +19,9 @@ MME_2013_2014_SGP <- fread("Data/Base_Files/MME_2013_14_SGP.txt", sep="|", colCl
 
 ### Tidy up data
 
-MME_2012_2013_SGP[,GRADE:="EOCT"]
+MME_2012_2013_SGP[,GRADE:=as.character(as.numeric(GRADE))]
 MME_2012_2013_SGP[,SCALE_SCORE:=as.numeric(SCALE_SCORE)]
-MME_2013_2014_SGP[,GRADE:="EOCT"]
+MME_2013_2014_SGP[,GRADE:=as.character(as.numeric(GRADE))]
 MME_2013_2014_SGP[,SCALE_SCORE:=as.numeric(SCALE_SCORE)]
 MEAP_2012_2013_SGP[,GRADE:=as.character(as.numeric(GRADE))]
 MEAP_2012_2013_SGP[,SCALE_SCORE:=as.numeric(SCALE_SCORE)]
@@ -33,7 +33,7 @@ MEAP_2013_2014_SGP[,SCALE_SCORE:=as.numeric(SCALE_SCORE)]
 
 Michigan_Data_LONG <- rbindlist(list(MEAP_2012_2013_SGP, MEAP_2013_2014_SGP, MME_2012_2013_SGP, MME_2013_2014_SGP))
 setnames(Michigan_Data_LONG, 1, "ID")
-
+Michigan_Data_LONG[CONTENT_AREA=="SOCIAL STUDIES", CONTENT_AREA:="SOCIAL_STUDIES"]
 
 ### Deal with duplicates
 
