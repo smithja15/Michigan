@@ -82,7 +82,7 @@ MICHIGAN.2013_2014.config <- list(
 	WRITING.MME.2013_2014.config=list(
                 sgp.content.areas=c('WRITING', 'WRITING'),
                 sgp.panel.years=c('2009_2010', '2013_2014'),
-                sgp.grade.sequences=list(c('7', 'EOCT'))),
+                sgp.grade.sequences=list(c('7', '11'))),
 	SCIENCE.2013_2014.config=list(
                 sgp.content.areas=c('SCIENCE', 'SCIENCE'),
                 sgp.panel.years=c('2010_2011', '2013_2014'),
