@@ -56,7 +56,7 @@ MICHIGAN.2012_2013.config <- list(
 	SOCIAL_STUDIES.MME.2012_2013.config=list(
                 sgp.content.areas=c('SOCIAL_STUDIES', 'SOCIAL_STUDIES'),
                 sgp.panel.years=c('2010_2011', '2012_2013'),
-                sgp.grade.sequences=list(c('9', 'EOCT'))),
+                sgp.grade.sequences=list(c('9', 'EOCT'))))
 
 MICHIGAN.2013_2014.config <- list(
 	MATHEMATICS.2013_2014.config=list(
@@ -98,7 +98,7 @@ MICHIGAN.2013_2014.config <- list(
 	SOCIAL_STUDIES.MME.2013_2014.config=list(
                 sgp.content.areas=c('SOCIAL_STUDIES', 'SOCIAL_STUDIES'),
                 sgp.panel.years=c('2011_2012', '2013_2014'),
-                sgp.grade.sequences=list(c('9', 'EOCT'))),
+                sgp.grade.sequences=list(c('9', 'EOCT'))))
 
 MICHIGAN.config <- c(MICHIGAN.2012_2013.config, MICHIGAN.2013_2014.config)
 
@@ -119,6 +119,7 @@ Michigan_SGP <- analyzeSGP(
 		sgp.projections.baseline=FALSE,
 		sgp.projections.lagged.baseline=FALSE,
 		sgp.config=MICHIGAN.config,
+		get.cohort.data.info=TRUE,
 		parallel.config=list(BACKEND="PARALLEL", WORKERS=list(PERCENTILES=20)))
 
 

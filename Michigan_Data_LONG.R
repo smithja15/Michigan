@@ -25,6 +25,7 @@ MME_2013_2014_SGP[,GRADE:="EOCT"]
 MME_2013_2014_SGP[,SCALE_SCORE:=as.numeric(SCALE_SCORE)]
 MEAP_2012_2013_SGP[,GRADE:=as.character(as.numeric(GRADE))]
 MEAP_2012_2013_SGP[,SCALE_SCORE:=as.numeric(SCALE_SCORE)]
+MEAP_2013_2014_SGP[,GRADE:=as.character(as.numeric(GRADE))]
 MEAP_2013_2014_SGP[,SCALE_SCORE:=as.numeric(SCALE_SCORE)]
 
 
@@ -36,9 +37,8 @@ setnames(Michigan_Data_LONG, 1, "ID")
 
 ### Deal with duplicates
 
-setkey(Michigan_Data_LONG, VALID_CASE, CONTENT_AREA, YEAR, ID, GRADE, SCALE_SCORE)
 setkey(Michigan_Data_LONG, VALID_CASE, CONTENT_AREA, YEAR, ID)
-Michigan_Data_LONG[which(duplicated(Michigan_Data_LONG))-1, VALID_CASE:="INVALID_CASE"]
+Michigan_Data_LONG <- Michigan_Data_LONG[!duplicated(Michigan_Data_LONG)]
 
 ### Save results
 
