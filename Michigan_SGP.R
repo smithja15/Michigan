@@ -33,10 +33,10 @@ MICHIGAN.2012_2013.config <- list(
                 sgp.content.areas=c('READING', 'READING', 'READING', 'READING'),
                 sgp.panel.years=c('2007_2008', '2008_2009', '2009_2010', '2012_2013'),
                 sgp.grade.sequences=list(c('6', '7', '8', '11'))),
-	WRITING.2012_2013.config=list(
-                sgp.content.areas=c('WRITING', 'WRITING'),
-                sgp.panel.years=c('2009_2010', '2012_2013'),
-                sgp.grade.sequences=list(c('4', '7'))),
+#	WRITING.2012_2013.config=list( ### NO 4th GRADE 2009_2010 cases
+#                sgp.content.areas=c('WRITING', 'WRITING'),
+#                sgp.panel.years=c('2009_2010', '2012_2013'),
+#                sgp.grade.sequences=list(c('4', '7'))),
 	WRITING.MME.2012_2013.config=list(
                 sgp.content.areas=c('WRITING', 'WRITING'),
                 sgp.panel.years=c('2008_2009', '2012_2013'),
