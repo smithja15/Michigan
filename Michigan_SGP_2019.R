@@ -20,7 +20,7 @@ source("SGP_CONFIG/2019/MATHEMATICS.R")
 source("SGP_CONFIG/2019/READING.R")
 source("SGP_CONFIG/2019/SOCIAL_STUDIES.R")
 
-Michigan.2018_2019.config <- list(MATHEMATICS.2018_2019.config, READING.2018_2019.config, SOCIAL_STUDIES.2018_2019.config)
+Michigan.2018_2019.config <- c(MATHEMATICS.2018_2019.config, READING.2018_2019.config, SOCIAL_STUDIES.2018_2019.config)
 
 
 ### Run abcSGP
@@ -37,7 +37,7 @@ Michigan_SGP <- abcSGP(
 		simulate.sgps=TRUE,
 		sgp.sqlite=TRUE,
 		parallel.config=list(BACKEND="PARALLEL", WORKERS=list(PERCENTILES=4,  PROJECTIONS=4, LAGGED_PROJECTIONS=4)),
-		sgp.config= MICHIGAN.2018_2019.config)
+		sgp.config= Michigan.2018_2019.config)
 
 
 ## Save results
