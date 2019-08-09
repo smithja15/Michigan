@@ -23,22 +23,11 @@ source("SGP_CONFIG/2019/SOCIAL_STUDIES.R")
 Michigan.2018_2019.config <- list(MATHEMATICS.2018_2019.config, READING.2018_2019.config, SOCIAL_STUDIES.2018_2019.config)
 
 
+### Run abcSGP
 
-
-#SGPstateData[["MI"]][["Achievement"]][["Knots_Boundaries"]] <- NULL
-#SGPstateData[["MI"]][["SGP_Configuration"]][["max.sgp.target.years.forward"]] <- 1:7
-#SGPstateData[["MI"]][["SGP_Configuration"]][["sgp.target.scale.scores.merge"]] <- "1_year_lagged_current"
-
-
-### Step 1: prepareSGP
-
-MStep.small<- readRDS("MStep2019_SGP.rds")
-Michigan_SGP <- prepareSGP(MStep.small, state="MI")
-#table(Michigan_SGP@Data$ACHIEVEMENT_LEVEL)
-### Step 2: analyzeSGP
-
-Michigan_SGP <- analyzeSGP(
-		sgp_object=Michigan_SGP,
+Michigan_SGP <- abcSGP(
+		sgp_object=Michigan_Data_LONG_2019,
+		steps=c("prepareSGP", "analyzeSGP", "combineSGP", "outputSGP")
 		sgp.percentiles=TRUE,
 		sgp.projections=TRUE,
 		sgp.projections.lagged=TRUE,
@@ -48,14 +37,4 @@ Michigan_SGP <- analyzeSGP(
 		simulate.sgps=TRUE,
 		sgp.sqlite=TRUE,
 		#parallel.config=list(BACKEND="PARALLEL", WORKERS=list(PERCENTILES=2,  PROJECTIONS=1, LAGGED_PROJECTIONS=1)),
-		sgp.config= MICHIGAN.2018_2019.config,
-		state="MI")
-		#
-
-### STEPS 3 & 4: combineSGP
-
-	Michigan_SGP<-combineSGP(Michigan_SGP, state="MI",sgp.target.scale.scores=TRUE,
-		parallel.config=list(BACKEND="PARALLEL", WORKERS=list(PERCENTILES=2,  PROJECTIONS=1, LAGGED_PROJECTIONS=1)),
 		sgp.config= MICHIGAN.2018_2019.config)
-	outputSGP(Michigan_SGP, state="MI",output.type="LONG_FINAL_YEAR_Data")
-#
