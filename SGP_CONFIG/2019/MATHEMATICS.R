@@ -4,7 +4,7 @@
 ###                                                                          ###
 ################################################################################
 
-MICHIGAN.2018_2019.config <- list(
+MATHEMATICS.2018_2019.config <- list(
 		MATHEMATICS.2018_2019=list(
                 sgp.content.areas=c('MATHEMATICS', 'MATHEMATICS', 'MATHEMATICS'),
                 sgp.panel.years=c('2016_2017', '2017_2018', '2018_2019'),
