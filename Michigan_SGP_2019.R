@@ -22,6 +22,9 @@ source("SGP_CONFIG/2019/SOCIAL_STUDIES.R")
 
 Michigan.2018_2019.config <- c(MATHEMATICS.2018_2019.config, READING.2018_2019.config, SOCIAL_STUDIES.2018_2019.config)
 
+### Include number of projection years to be included in output
+SGPstateData[["MI"]][["SGP_Configuration"]][["max.sgp.target.years.forward"]] <- 1:7
+SGPstateData[["MI"]][["SGP_Configuration"]][["sgp.target.scale.scores.merge"]] <- "1_year_lagged_current"
 
 ### Run abcSGP
 
