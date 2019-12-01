@@ -8,8 +8,6 @@
 
 require(data.table)
 require(SGP)
-debug(analyzeSGP)
-debug(SGP:::convertScaleScore)
 
 
 ### Load Data
