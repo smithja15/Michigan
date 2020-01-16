@@ -1,5 +1,5 @@
 .DS_Store
-Data/
-Goodness_of_Fit/
-Visualizations/
-Logs/
+/Data
+/Goodness_of_Fit
+/Visualizations
+/Logs
