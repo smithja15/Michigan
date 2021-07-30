@@ -4,7 +4,7 @@
 ###                                                                                   ###
 #########################################################################################
 
-READING_2018_2019.config <- list(
+READING.2018_2019.config <- list(
 ################## When/If 2015_2016 READING data available, use these configurations
 #	READING.2018_2019 = list(
 #		sgp.content.areas=rep("READING", 3),
