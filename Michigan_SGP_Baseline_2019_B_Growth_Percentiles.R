@@ -26,14 +26,14 @@ SGPstateData[["MI"]][["Assessment_Program_Information"]][["Assessment_Transition
 SGPstateData[["MI"]][["Assessment_Program_Information"]][["Scale_Change"]] <- NULL
 
 ###   Read in BASELINE percentiles configuration scripts and combine
-source("SGP_CONFIG/2019/BASELINE/Percentiles/ELA.R")
+source("SGP_CONFIG/2019/BASELINE/Percentiles/READING.R")
 source("SGP_CONFIG/2019/BASELINE/Percentiles/MATHEMATICS.R")
 source("SGP_CONFIG/2019/BASELINE/Percentiles/SOCIAL_STUDIES.R")
 
 MI_2019_Baseline_Config <- c(
-	ELA_2019.config,
-	MATHEMATICS_2019.config
-	SOCIAL_STUDIES_2019.config
+	READING.2018_2019.config,
+	MATHEMATICS.2018_2019.config,
+	SOCIAL_STUDIES.2018_2019.config
 )
 
 #####
