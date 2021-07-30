@@ -6,6 +6,7 @@
 
 ### Load necessary packages
 require(SGP)
+require(data.table)
 
 ###   Load the results data from the 'official' 2019 SGP analyses
 load("Data/Michigan_SGP_LONG_Data.Rdata")
@@ -45,7 +46,7 @@ source("SGP_CONFIG/2019/BASELINE/Matrices/SOCIAL_STUDIES.R")
 
 MI_BASELINE_CONFIG <- c(
 	READING_BASELINE.config,
-	MATHEMATICS_BASELINE.config
+	MATHEMATICS_BASELINE.config,
 	SOCIAL_STUDIES_BASELINE.config
 )
 
