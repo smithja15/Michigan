@@ -19,7 +19,7 @@ if (length(tmp.names <- grep("BASELINE|SS", names(Michigan_SGP_LONG_Data))) > 0)
 }
 
 ###   Add single-cohort baseline matrices to SGPstateData
-SGPstateData <- SGPmatrices::addBaselineMatrices("MI", "2021")
+SGPstateData <- SGPmatrices::addBaselineMatrices("MI", "2020_2021")
 
 ### NULL out assessment transition in 2019 (since already dealth with)
 SGPstateData[["MI"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <- NULL
