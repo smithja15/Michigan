@@ -21,11 +21,11 @@ SGPstateData[["MI"]][["Assessment_Program_Information"]][["Scale_Change"]] <- NU
 source("SGP_CONFIG/2018_2019/BASELINE/Projections/Skip_Year_Projections_MetaData.R")
 
 ###   Read in BASELINE projections configuration scripts and combine
-source("SGP_CONFIG/2018_2019/BASELINE/Projections/ELA.R")
+source("SGP_CONFIG/2018_2019/BASELINE/Projections/READING.R")
 source("SGP_CONFIG/2018_2019/BASELINE/Projections/MATHEMATICS.R")
 
 MI_2018_2019_Baseline_Config <- c(
-	ELA_2018_2019.config,
+	READING_2018_2019.config,
 	MATHEMATICS_2018_2019.config,
 	SOCIAL_STUDIES_2018_2019.config
 )
