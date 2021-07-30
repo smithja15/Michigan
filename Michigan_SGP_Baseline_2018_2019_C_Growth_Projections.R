@@ -14,19 +14,20 @@ load("Data/Michigan_SGP.Rdata")
 SGPstateData <- SGPmatrices::addBaselineMatrices("MI", "2020_2021")
 
 ### NULL out assessment transition in 2019 (since already dealth with)
-SGPstateData[["IN"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <- NULL
-SGPstateData[["IN"]][["Assessment_Program_Information"]][["Scale_Change"]] <- NULL
+SGPstateData[["MI"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <- NULL
+SGPstateData[["MI"]][["Assessment_Program_Information"]][["Scale_Change"]] <- NULL
 
 ###   Update SGPstateData with grade/course/lag progression information
-source("SGP_CONFIG/2019/BASELINE/Projections/Skip_Year_Projections_MetaData.R")
+source("SGP_CONFIG/2018_2019/BASELINE/Projections/Skip_Year_Projections_MetaData.R")
 
 ###   Read in BASELINE projections configuration scripts and combine
-source("SGP_CONFIG/2019/BASELINE/Projections/ELA.R")
-source("SGP_CONFIG/2019/BASELINE/Projections/MATHEMATICS.R")
+source("SGP_CONFIG/2018_2019/BASELINE/Projections/ELA.R")
+source("SGP_CONFIG/2018_2019/BASELINE/Projections/MATHEMATICS.R")
 
-IN_2019_Baseline_Config <- c(
-	ELA_2019.config,
-	MATHEMATICS_2019.config
+MI_2018_2019_Baseline_Config <- c(
+	ELA_2018_2019.config,
+	MATHEMATICS_2018_2019.config,
+	SOCIAL_STUDIES_2018_2019.config
 )
 
 #####
@@ -36,7 +37,7 @@ IN_2019_Baseline_Config <- c(
 Michigan_SGP <- abcSGP(
         sgp_object = Michigan_SGP,
         steps = c("prepareSGP", "analyzeSGP"), # no changes to @Data - don't combine or output
-        sgp.config = IN_2019_Baseline_Config,
+        sgp.config = MI_2019_Baseline_Config,
         sgp.percentiles = FALSE,
         sgp.projections = FALSE,
         sgp.projections.lagged = FALSE,
@@ -44,9 +45,7 @@ Michigan_SGP <- abcSGP(
         sgp.projections.baseline = TRUE, # Need P50_PROJ_YEAR_1_CURRENT for Ho's Fair Trend/Equity Check metrics
         sgp.projections.lagged.baseline = FALSE,
         save.intermediate.results = FALSE,
-        parallel.config = list(
-					BACKEND = "PARALLEL",
-          WORKERS=list(PROJECTIONS=8))
+        parallel.config = list(BACKEND = "PARALLEL", WORKERS=list(PROJECTIONS=8))
 )
 
 ###   Save results

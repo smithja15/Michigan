@@ -28,7 +28,7 @@ source("SGP_CONFIG/2018_2019/BASELINE/Percentiles/READING.R")
 source("SGP_CONFIG/2018_2019/BASELINE/Percentiles/MATHEMATICS.R")
 source("SGP_CONFIG/2018_2019/BASELINE/Percentiles/SOCIAL_STUDIES.R")
 
-MI_2019_Baseline_Config <- c(
+MI_2018_2019_Baseline_Config <- c(
 	READING.2018_2019.config,
 	MATHEMATICS.2018_2019.config,
 	SOCIAL_STUDIES.2018_2019.config
@@ -48,7 +48,7 @@ SGPstateData[["MI"]][["Assessment_Program_Information"]][["CSEM"]] <- NULL
 Michigan_SGP <- abcSGP(
         sgp_object = Michigan_SGP_LONG_Data,
         steps = c("prepareSGP", "analyzeSGP", "combineSGP", "outputSGP"),
-        sgp.config = MI_2019_Baseline_Config,
+        sgp.config = MI_2018_2019_Baseline_Config,
         sgp.percentiles = FALSE,
         sgp.projections = FALSE,
         sgp.projections.lagged = FALSE,
