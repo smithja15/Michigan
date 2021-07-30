@@ -36,7 +36,7 @@ MI_2018_2019_Baseline_Config <- c(
 Michigan_SGP <- abcSGP(
         sgp_object = Michigan_SGP,
         steps = c("prepareSGP", "analyzeSGP"), # no changes to @Data - don't combine or output
-        sgp.config = MI_2019_Baseline_Config,
+        sgp.config = MI_2018_2019_Baseline_Config,
         sgp.percentiles = FALSE,
         sgp.projections = FALSE,
         sgp.projections.lagged = FALSE,
