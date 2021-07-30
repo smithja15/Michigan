@@ -16,8 +16,11 @@ Michigan_Baseline_Data <- data.table::data.table(Michigan_SGP_LONG_Data[, c("VAL
 
 ### Modify knots/boundaries in SGPstateData to use equated scale scores properly
 
+SGPstateData[["MI"]][["Achievement"]][["Knots_Boundaries"]][["READING"]] <- SGPstateData[["MI"]][["Achievement"]][["Knots_Boundaries"]][["READING.2018_2019"]]
+SGPstateData[["MI"]][["Achievement"]][["Knots_Boundaries"]][["MATHEMATICS"]] <- SGPstateData[["MI"]][["Achievement"]][["Knots_Boundaries"]][["MATHEMATICS.2018_2019"]]
 SGPstateData[["MI"]][["Achievement"]][["Knots_Boundaries"]][["READING.2018_2019"]] <- NULL
 SGPstateData[["MI"]][["Achievement"]][["Knots_Boundaries"]][["MATHEMATICS.2018_2019"]] <- NULL
+
 
 ### Put Grade 8 Reading/Mathematics scores on PSAT scale (2018_2019)
 SGPstateData[["MI"]][["Assessment_Program_Information"]][["Assessment_Transition"]][["Year"]] <- "2018_2019"
