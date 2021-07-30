@@ -7,8 +7,6 @@
 ###   Load packages
 require(SGP)
 require(data.table)
-#require(SGPmatrices)
-#debug(addBaselineMatrices)
 
 ###   Load data
 load("Data/Michigan_SGP_LONG_Data.Rdata")
