@@ -70,3 +70,12 @@ MI_Baseline_Matrices <- baselineSGP(
 
 ###   Save results
 save(MI_Baseline_Matrices, file="Data/MI_Baseline_Matrices.Rdata")
+
+
+### Create SCALE_SCORE_NON_EQUATED and turn GRADE 8 READING & MATHEMATICS SCALE_SCORE into SCALE_SCORE_EQUATED in Michigan_SGP_LONG_Data and save results
+setkey(Michigan_SGP_LONG_Data, VALID_CASE, CONTENT_AREA, YEAR, GRADE, ID)
+setkey(Michigan_Baseline_Data, VALID_CASE, CONTENT_AREA, YEAR, GRADE, ID)
+Michigan_SGP_LONG_Data[,SCALE_SCORE_NON_EQUATED:=SCALE_SCORE]
+Michigan_SGP_LONG_Data[,SCALE_SCORE:=Michigan_Baseline_Data$SCALE_SCORE]
+
+save(Michigan_SGP_LONG_Data, file="Data/Michigan_SGP_LONG_Data.Rdata")
