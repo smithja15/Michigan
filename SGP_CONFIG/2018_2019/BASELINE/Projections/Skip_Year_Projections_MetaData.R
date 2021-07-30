@@ -26,7 +26,7 @@ SGPstateData[["MI"]][["SGP_Configuration"]][["grade.projection.sequence"]] <- li
     MATHEMATICS_GRADE_6 = c(3, 4, 5, 6, 8),
     MATHEMATICS_GRADE_7 = c(3, 4, 5, 6, 7, 9),
     MATHEMATICS_GRADE_8 = c(3, 4, 5, 6, 7, 8, 10),
-    MATHEMATICS_GRADE_8 = c(3, 4, 5, 6, 7, 8, 9, 11))
+    MATHEMATICS_GRADE_9 = c(3, 4, 5, 6, 7, 8, 9, 11))
 SGPstateData[["MI"]][["SGP_Configuration"]][["content_area.projection.sequence"]] <- list(
     READING_GRADE_3 = rep("READING", 2),
     READING_GRADE_4 = rep("READING", 3),
