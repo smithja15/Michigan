@@ -43,9 +43,9 @@ Michigan_Baseline_Data <- rbindlist(list(data.for.equate, Michigan_Baseline_Data
 setkey(Michigan_Baseline_Data, VALID_CASE, CONTENT_AREA, YEAR, ID)
 
 ###   Read in Baseline SGP Configuration Scripts and Combine
-source("SGP_CONFIG/2019/BASELINE/Matrices/READING.R")
-source("SGP_CONFIG/2019/BASELINE/Matrices/MATHEMATICS.R")
-source("SGP_CONFIG/2019/BASELINE/Matrices/SOCIAL_STUDIES.R")
+source("SGP_CONFIG/2018_2019/BASELINE/Matrices/READING.R")
+source("SGP_CONFIG/2018_2019/BASELINE/Matrices/MATHEMATICS.R")
+source("SGP_CONFIG/2018_2019/BASELINE/Matrices/SOCIAL_STUDIES.R")
 
 MI_BASELINE_CONFIG <- c(
 	READING_BASELINE.config,

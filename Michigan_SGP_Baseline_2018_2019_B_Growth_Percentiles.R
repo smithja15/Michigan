@@ -24,9 +24,9 @@ SGPstateData[["MI"]][["Assessment_Program_Information"]][["Assessment_Transition
 SGPstateData[["MI"]][["Assessment_Program_Information"]][["Scale_Change"]] <- NULL
 
 ###   Read in BASELINE percentiles configuration scripts and combine
-source("SGP_CONFIG/2019/BASELINE/Percentiles/READING.R")
-source("SGP_CONFIG/2019/BASELINE/Percentiles/MATHEMATICS.R")
-source("SGP_CONFIG/2019/BASELINE/Percentiles/SOCIAL_STUDIES.R")
+source("SGP_CONFIG/2018_2019/BASELINE/Percentiles/READING.R")
+source("SGP_CONFIG/2018_2019/BASELINE/Percentiles/MATHEMATICS.R")
+source("SGP_CONFIG/2018_2019/BASELINE/Percentiles/SOCIAL_STUDIES.R")
 
 MI_2019_Baseline_Config <- c(
 	READING.2018_2019.config,

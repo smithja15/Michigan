@@ -1,17 +1,17 @@
-################################################################################
-###                                                                          ###
-###   Indiana Learning Loss Analyses -- 2019 Baseline Growth Projections     ###
-###                                                                          ###
-################################################################################
+######################################################################################
+###                                                                                ###
+###   Michigan Learning Loss Analyses -- 2018-2019 Baseline Growth Projections     ###
+###                                                                                ###
+######################################################################################
 
 ###   Load packages
 require(SGP)
 
 ###   Load data from baseline SGP analyses
-load("Data/Indiana_SGP.Rdata")
+load("Data/Michigan_SGP.Rdata")
 
 ###   Add single-cohort baseline matrices to SGPstateData
-SGPstateData <- SGPmatrices::addBaselineMatrices("IN", "2021")
+SGPstateData <- SGPmatrices::addBaselineMatrices("MI", "2020_2021")
 
 ### NULL out assessment transition in 2019 (since already dealth with)
 SGPstateData[["IN"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <- NULL
@@ -33,8 +33,8 @@ IN_2019_Baseline_Config <- c(
 ###   Run projections analysis - run abcSGP on object from BASELINE SGP analysis
 #####
 
-Indiana_SGP <- abcSGP(
-        sgp_object = Indiana_SGP,
+Michigan_SGP <- abcSGP(
+        sgp_object = Michigan_SGP,
         steps = c("prepareSGP", "analyzeSGP"), # no changes to @Data - don't combine or output
         sgp.config = IN_2019_Baseline_Config,
         sgp.percentiles = FALSE,
@@ -50,4 +50,4 @@ Indiana_SGP <- abcSGP(
 )
 
 ###   Save results
-save(Indiana_SGP, file="Data/Indiana_SGP.Rdata")
+save(Michigan_SGP, file="Data/Michigan_SGP.Rdata")
