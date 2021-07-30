@@ -87,6 +87,16 @@ READING_BASELINE.config <- list(
 		sgp.baseline.grade.sequences.lags=c(1,2)),
 	list(
 		sgp.baseline.content.areas=rep("READING", 2),
+		sgp.baseline.panel.years=c("2017_2018", "2018_2019"),
+		sgp.baseline.grade.sequences=c("8", "9"),
+		sgp.baseline.grade.sequences.lags=2),
+	list(
+		sgp.baseline.content.areas=rep("READING", 3),
+		sgp.baseline.panel.years=c("2016_2017", "2017_2018", "2018_2019"),
+		sgp.baseline.grade.sequences=c("7", "8", "9"),
+		sgp.baseline.grade.sequences.lags=c(1,2)),
+	list(
+		sgp.baseline.content.areas=rep("READING", 2),
 		sgp.baseline.panel.years=c("2016_2017", "2018_2019"),
 		sgp.baseline.grade.sequences=c("7", "9"),
 		sgp.baseline.grade.sequences.lags=2),
@@ -97,6 +107,16 @@ READING_BASELINE.config <- list(
 		sgp.baseline.grade.sequences.lags=c(1,2)),
 	list(
 		sgp.baseline.content.areas=rep("READING", 2),
+		sgp.baseline.panel.years=c("2017_2018", "2018_2019"),
+		sgp.baseline.grade.sequences=c("9", "10"),
+		sgp.baseline.grade.sequences.lags=2),
+	list(
+		sgp.baseline.content.areas=rep("READING", 3),
+		sgp.baseline.panel.years=c("2016_2017", "2017_2018", "2018_2019"),
+		sgp.baseline.grade.sequences=c("8", "9", "10"),
+		sgp.baseline.grade.sequences.lags=c(1,2)),
+	list(
+		sgp.baseline.content.areas=rep("READING", 2),
 		sgp.baseline.panel.years=c("2016_2017", "2018_2019"),
 		sgp.baseline.grade.sequences=c("8", "10"),
 		sgp.baseline.grade.sequences.lags=2),
@@ -104,6 +124,16 @@ READING_BASELINE.config <- list(
 		sgp.baseline.content.areas=rep("READING", 3),
 		sgp.baseline.panel.years=c("2015_2016", "2016_2017", "2018_2019"),
 		sgp.baseline.grade.sequences=c("7", "8", "10"),
+		sgp.baseline.grade.sequences.lags=c(1,2)),
+	list(
+		sgp.baseline.content.areas=rep("READING", 2),
+		sgp.baseline.panel.years=c("2017_2018", "2018_2019"),
+		sgp.baseline.grade.sequences=c("10", "11"),
+		sgp.baseline.grade.sequences.lags=2),
+	list(
+		sgp.baseline.content.areas=rep("READING", 3),
+		sgp.baseline.panel.years=c("2016_2017", "2017_2018", "2018_2019"),
+		sgp.baseline.grade.sequences=c("9", "10", "11"),
 		sgp.baseline.grade.sequences.lags=c(1,2)),
 	list(
 		sgp.baseline.content.areas=rep("READING", 2),
