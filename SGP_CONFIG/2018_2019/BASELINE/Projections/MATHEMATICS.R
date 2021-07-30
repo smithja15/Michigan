@@ -48,7 +48,7 @@ MATHEMATICS_2018_2019.config <- list(
         sgp.projection.baseline.content.areas=rep("MATHEMATICS", 2),
         sgp.projection.baseline.panel.years=c("2017_2018", "2018_2019"),
         sgp.projection.baseline.grade.sequences=list(c("5", "6")),
-        sgp.projection.sequence="MATHEMATICS_GRADE_6")
+        sgp.projection.sequence="MATHEMATICS_GRADE_6"),
     MATHEMATICS.2018_2019 = list(
         sgp.content.areas=rep("MATHEMATICS", 3),
         sgp.baseline.content.areas=rep("MATHEMATICS", 3),
@@ -59,7 +59,7 @@ MATHEMATICS_2018_2019.config <- list(
         sgp.projection.baseline.content.areas=rep("MATHEMATICS", 2),
         sgp.projection.baseline.panel.years=c("2017_2018", "2018_2019"),
         sgp.projection.baseline.grade.sequences=list(c("6", "7")),
-        sgp.projection.sequence="MATHEMATICS_GRADE_7")
+        sgp.projection.sequence="MATHEMATICS_GRADE_7"),
     MATHEMATICS.2018_2019 = list(
         sgp.content.areas=rep("MATHEMATICS", 3),
         sgp.baseline.content.areas=rep("MATHEMATICS", 3),
@@ -70,7 +70,7 @@ MATHEMATICS_2018_2019.config <- list(
         sgp.projection.baseline.content.areas=rep("MATHEMATICS", 2),
         sgp.projection.baseline.panel.years=c("2017_2018", "2018_2019"),
         sgp.projection.baseline.grade.sequences=list(c("7", "8")),
-        sgp.projection.sequence="MATHEMATICS_GRADE_8")
+        sgp.projection.sequence="MATHEMATICS_GRADE_8"),
     MATHEMATICS.2018_2019 = list(
         sgp.content.areas=rep("MATHEMATICS", 3),
         sgp.baseline.content.areas=rep("MATHEMATICS", 3),
