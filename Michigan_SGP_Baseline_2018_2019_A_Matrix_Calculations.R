@@ -1,8 +1,8 @@
-################################################################################
-###                                                                          ###
+#################################################################################
+###                                                                           ###
 ###       Michigan Learning Loss Analyses -- Create Baseline Matrices         ###
-###                                                                          ###
-################################################################################
+###                                                                           ###
+#################################################################################
 
 ### Load necessary packages
 require(SGP)
@@ -13,14 +13,6 @@ load("Data/Michigan_SGP_LONG_Data.Rdata")
 
 ###   Create a smaller subset of the LONG data to work with.
 Michigan_Baseline_Data <- data.table::data.table(Michigan_SGP_LONG_Data[, c("VALID_CASE", "CONTENT_AREA", "YEAR", "ID", "GRADE", "SCALE_SCORE", "ACHIEVEMENT_LEVEL"),])
-
-### Modify knots/boundaries in SGPstateData to use equated scale scores properly
-
-SGPstateData[["MI"]][["Achievement"]][["Knots_Boundaries"]][["READING"]] <- SGPstateData[["MI"]][["Achievement"]][["Knots_Boundaries"]][["READING.2018_2019"]]
-SGPstateData[["MI"]][["Achievement"]][["Knots_Boundaries"]][["MATHEMATICS"]] <- SGPstateData[["MI"]][["Achievement"]][["Knots_Boundaries"]][["MATHEMATICS.2018_2019"]]
-SGPstateData[["MI"]][["Achievement"]][["Knots_Boundaries"]][["READING.2018_2019"]] <- NULL
-SGPstateData[["MI"]][["Achievement"]][["Knots_Boundaries"]][["MATHEMATICS.2018_2019"]] <- NULL
-
 
 ### Put Grade 8 Reading/Mathematics scores on PSAT scale (2018_2019)
 SGPstateData[["MI"]][["Assessment_Program_Information"]][["Assessment_Transition"]][["Year"]] <- "2018_2019"
