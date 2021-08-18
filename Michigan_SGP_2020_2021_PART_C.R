@@ -44,9 +44,9 @@ SGPstateData[["MI"]][["SGP_Configuration"]][["grade.projection.sequence"]] <- li
     MATHEMATICS_GRADE_6=c(3, 4, 6, 7, 8, 9, 10, 11),
     MATHEMATICS_GRADE_7=c(3, 4, 5, 7, 8, 9, 10, 11),
     MATHEMATICS_GRADE_8=c(3, 4, 5, 6, 8, 9, 10, 11),
-    MATHEMATICS_GRADE_8=c(3, 4, 5, 6, 7, 9, 10, 11),
-    MATHEMATICS_GRADE_8=c(3, 4, 5, 6, 7, 8, 10, 11),
-    MATHEMATICS_GRADE_8=c(3, 4, 5, 6, 7, 8, 9, 11))
+    MATHEMATICS_GRADE_9=c(3, 4, 5, 6, 7, 9, 10, 11),
+    MATHEMATICS_GRADE_10=c(3, 4, 5, 6, 7, 8, 10, 11),
+    MATHEMATICS_GRADE_11=c(3, 4, 5, 6, 7, 8, 9, 11))
 SGPstateData[["MI"]][["SGP_Configuration"]][["content_area.projection.sequence"]] <- list(
     READING_GRADE_3=rep("READING", 9),
     READING_GRADE_4=rep("READING", 9),
@@ -67,22 +67,26 @@ SGPstateData[["MI"]][["SGP_Configuration"]][["content_area.projection.sequence"]
     MATHEMATICS_GRADE_10=rep("MATHEMATICS", 8),
     MATHEMATICS_GRADE_11=rep("MATHEMATICS", 8))
 SGPstateData[["MI"]][["SGP_Configuration"]][["max.forward.projection.sequence"]] <- list(
-    READING_GRADE_3=4,
-    READING_GRADE_4=4,
-    READING_GRADE_5=4,
-    READING_GRADE_6=4,
-    READING_GRADE_7=4,
-    READING_GRADE_8=4,
-    MATHEMATICS_GRADE_3=4,
-    MATHEMATICS_GRADE_4=4,
-    MATHEMATICS_GRADE_5=4,
-    MATHEMATICS_GRADE_6=4,
-    MATHEMATICS_GRADE_7=4,
-    MATHEMATICS_GRADE_8=4)
-
+    READING_GRADE_3=7,
+    READING_GRADE_4=7,
+    READING_GRADE_5=7,
+    READING_GRADE_6=7,
+    READING_GRADE_7=7,
+    READING_GRADE_8=7,
+    READING_GRADE_9=7,
+    READING_GRADE_10=7,
+    READING_GRADE_11=7,
+    MATHEMATICS_GRADE_3=7,
+    MATHEMATICS_GRADE_4=7,
+    MATHEMATICS_GRADE_5=7,
+    MATHEMATICS_GRADE_6=7,
+    MATHEMATICS_GRADE_7=7,
+    MATHEMATICS_GRADE_8=7,
+    MATHEMATICS_GRADE_9=7,
+    MATHEMATICS_GRADE_10=7,
+    MATHEMATICS_GRADE_11=7)
 
 ### Run analysis
-
 Michigan_SGP <- abcSGP(
         Michigan_SGP,
         steps=c("prepareSGP", "analyzeSGP", "combineSGP", "outputSGP"),
