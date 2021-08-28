@@ -146,6 +146,11 @@ MATHEMATICS_BASELINE.config <- list(
 		sgp.baseline.grade.sequences=c("8", "9", "11"),
 		sgp.baseline.grade.sequences.lags=c(1,2)),
 	list(
+		sgp.baseline.content.areas=rep("MATHEMATICS", 2),
+		sgp.baseline.panel.years=c("2015_2016", "2018_2019"),
+		sgp.baseline.grade.sequences=c("8", "11"),
+		sgp.baseline.grade.sequences.lags=c(3)),
+	list(
 		sgp.baseline.content.areas=rep("MATHEMATICS", 3),
 		sgp.baseline.panel.years=c("2014_2015", "2015_2016", "2018_2019"),
 		sgp.baseline.grade.sequences=c("7", "8", "11"),
