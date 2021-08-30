@@ -57,7 +57,7 @@ MATHEMATICS_2020_2021.config <- list(
        sgp.projection.baseline.content.areas=c("MATHEMATICS"),
        sgp.projection.baseline.panel.years=c("2020_2021"),
        sgp.projection.baseline.grade.sequences=list(c("7")),
-       sgp.projection.sequence="MATHEMATICS_GRADE_7")
+       sgp.projection.sequence="MATHEMATICS_GRADE_7"),
    MATHEMATICS.2020_2021 = list(
        sgp.content.areas=c("MATHEMATICS", "MATHEMATICS", "MATHEMATICS"),
        sgp.baseline.content.areas=c("MATHEMATICS", "MATHEMATICS", "MATHEMATICS"),
@@ -68,7 +68,7 @@ MATHEMATICS_2020_2021.config <- list(
        sgp.projection.baseline.content.areas=c("MATHEMATICS"),
        sgp.projection.baseline.panel.years=c("2020_2021"),
        sgp.projection.baseline.grade.sequences=list(c("8")),
-       sgp.projection.sequence="MATHEMATICS_GRADE_8")
+       sgp.projection.sequence="MATHEMATICS_GRADE_8"),
    MATHEMATICS.2020_2021 = list(
        sgp.content.areas=c("MATHEMATICS", "MATHEMATICS", "MATHEMATICS"),
        sgp.baseline.content.areas=c("MATHEMATICS", "MATHEMATICS", "MATHEMATICS"),
