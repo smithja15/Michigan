@@ -10,6 +10,11 @@ READING_2020_2021.config <- list(
     #This is used operationally for grade 11
     READING_SAT.2020_2021=list(
          			sgp.content.areas=c('READING', 'READING', 'READING'),
+         			sgp.panel.years=c('2017_2018', '2018_2019', '2020_2021'),
+         			sgp.grade.sequences=list(c('8', '9', '11')),
+         			sgp.norm.group.preference=2),
+    READING_SAT.2020_2021=list(
+         			sgp.content.areas=c('READING', 'READING', 'READING'),
          			sgp.panel.years=c('2016_2017', '2017_2018', '2020_2021'),
          			sgp.grade.sequences=list(c('7', '8', '11')),
          			sgp.norm.group.preference=1)
