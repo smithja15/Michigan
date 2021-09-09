@@ -11,7 +11,7 @@ require(SGP)
 require(SGPmatrices)
 
 ### Load data
-Michigan_Data_LONG <- load("Data/MStep_2021_w_Equated_Scores.Rdata")
+load("Data/MStep_2021_w_Equated_Scores.Rdata")
 
 ### Add Baseline matrices to SGPstateData
 SGPstateData <- addBaselineMatrices("MI", "2020_2021")

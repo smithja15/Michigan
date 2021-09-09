@@ -13,7 +13,7 @@ READING_2020_2021.config <- list(
        sgp.projection.baseline.content.areas=c("READING"),
        sgp.projection.baseline.panel.years=c("2020_2021"),
        sgp.projection.baseline.grade.sequences=list(c("3")),
-       sgp.projection.sequence="READING_GRADE_3"),
+       sgp.projection.sequence="READING"),
    READING.2020_2021 = list(
        sgp.content.areas=c("READING", "READING", "READING"),
        sgp.baseline.content.areas=c("READING", "READING", "READING"),
@@ -24,7 +24,7 @@ READING_2020_2021.config <- list(
        sgp.projection.baseline.content.areas=c("READING"),
        sgp.projection.baseline.panel.years=c("2020_2021"),
        sgp.projection.baseline.grade.sequences=list(c("4")),
-       sgp.projection.sequence="READING_GRADE_4"),
+       sgp.projection.sequence="READING"),
    READING.2020_2021 = list(
        sgp.content.areas=c("READING", "READING", "READING"),
        sgp.baseline.content.areas=c("READING", "READING", "READING"),
@@ -35,7 +35,7 @@ READING_2020_2021.config <- list(
        sgp.projection.baseline.content.areas=c("READING"),
        sgp.projection.baseline.panel.years=c("2020_2021"),
        sgp.projection.baseline.grade.sequences=list(c("5")),
-       sgp.projection.sequence="READING_GRADE_5"),
+       sgp.projection.sequence="READING"),
    READING.2020_2021 = list(
        sgp.content.areas=c("READING", "READING", "READING"),
        sgp.baseline.content.areas=c("READING", "READING", "READING"),
@@ -46,7 +46,7 @@ READING_2020_2021.config <- list(
        sgp.projection.baseline.content.areas=c("READING"),
        sgp.projection.baseline.panel.years=c("2020_2021"),
        sgp.projection.baseline.grade.sequences=list(c("6")),
-       sgp.projection.sequence="READING_GRADE_6"),
+       sgp.projection.sequence="READING"),
    READING.2020_2021 = list(
        sgp.content.areas=c("READING", "READING", "READING"),
        sgp.baseline.content.areas=c("READING", "READING", "READING"),
@@ -57,7 +57,7 @@ READING_2020_2021.config <- list(
        sgp.projection.baseline.content.areas=c("READING"),
        sgp.projection.baseline.panel.years=c("2020_2021"),
        sgp.projection.baseline.grade.sequences=list(c("7")),
-       sgp.projection.sequence="READING_GRADE_7"),
+       sgp.projection.sequence="READING"),
    READING.2020_2021 = list(
        sgp.content.areas=c("READING", "READING", "READING"),
        sgp.baseline.content.areas=c("READING", "READING", "READING"),
@@ -68,7 +68,7 @@ READING_2020_2021.config <- list(
        sgp.projection.baseline.content.areas=c("READING"),
        sgp.projection.baseline.panel.years=c("2020_2021"),
        sgp.projection.baseline.grade.sequences=list(c("8")),
-       sgp.projection.sequence="READING_GRADE_8"),
+       sgp.projection.sequence="READING"),
    READING.2020_2021 = list(
        sgp.content.areas=c("READING", "READING", "READING"),
        sgp.baseline.content.areas=c("READING", "READING", "READING"),
@@ -90,5 +90,5 @@ READING_2020_2021.config <- list(
        sgp.projection.baseline.content.areas=c("READING"),
        sgp.projection.baseline.panel.years=c("2020_2021"),
        sgp.projection.baseline.grade.sequences=list(c("9")),
-       sgp.projection.sequence="READING_GRADE_9")
+       sgp.projection.sequence="READING")
 )
