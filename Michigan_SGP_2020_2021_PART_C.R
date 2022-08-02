@@ -100,6 +100,7 @@ SGPstateData[["MI"]][['SGP_Progression_Preference']] <- data.table(
 ### Run analysis
 Michigan_SGP <- abcSGP(
         Michigan_SGP,
+        years="2020_2021",
         steps=c("prepareSGP", "analyzeSGP", "combineSGP", "outputSGP"),
         sgp.config=MI_2020_2021.config,
         sgp.percentiles=FALSE,

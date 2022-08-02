@@ -22,7 +22,7 @@ parallel.config <- list(BACKEND="PARALLEL", WORKERS=list(PERCENTILES=4, BASELINE
 
 ###   Add Baseline matrices to SGPstateData
 SGPstateData <- addBaselineMatrices("MI", "2021")
-SGPstateData[["MI"]][["SGP_Configuration"]][["sgp.target.scale.scores.merge"]] <- NULL
+SGPstateData[["MI"]][["SGP_Configuration"]][["sgp.target.scale.scores.merge"]] <- NULL ### WAIT UNTIL AFTER PART C TO MERGE
 SGPstateData[["MI"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <- NULL
 
 #  Establish required meta-data for STRAIGHT projection sequences
