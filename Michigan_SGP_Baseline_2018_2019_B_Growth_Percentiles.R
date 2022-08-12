@@ -28,20 +28,31 @@ source("SGP_CONFIG/2018_2019/BASELINE/Percentiles/READING.R")
 source("SGP_CONFIG/2018_2019/BASELINE/Percentiles/MATHEMATICS.R")
 source("SGP_CONFIG/2018_2019/BASELINE/Percentiles/SOCIAL_STUDIES.R")
 
-MI_2018_2019_Baseline_Config <- c(
-	READING.2018_2019.config,
-	MATHEMATICS.2018_2019.config,
-	SOCIAL_STUDIES.2018_2019.config
+MI_2018_2019_Baseline_Config_CONSECUTIVE_YEAR <- c(
+	READING_CONSECUTIVE_YEAR.2018_2019.config,
+	MATHEMATICS_CONSECUTIVE_YEAR.2018_2019.config,
+)
+
+MI_2018_2019_Baseline_Config_SKIP_YEAR <- c(
+	READING_SKIP_YEAR.2018_2019.config,
+	MATHEMATICS_SKIP_YEAR.2018_2019.config,
+)
+
+MI_2018_2019_Baseline_Config_SKIP_2_YEAR <- c(
+	READING_SKIP_2_YEAR.2018_2019.config,
+	MATHEMATICS_SKIP_2_YEAR.2018_2019.config,
+	SOCIAL_STUDIES_SKIP_2_YEAR.2018_2019.config,
 )
 
 #####
-###   Run BASELINE SGP analysis - create new Michigan_SGP object with historical data
+###   Run BASELINE SGP analysis for consecutive year
+###   create new Michigan_SGP object with historical data
 #####
 
-###   Temporarily set names of prior scores from sequential/cohort analyses
-data.table::setnames(Michigan_SGP_LONG_Data,
-	c("SCALE_SCORE_PRIOR", "SCALE_SCORE_PRIOR_STANDARDIZED"),
-	c("SS_PRIOR_COHORT", "SS_PRIOR_STD_COHORT"))
+#####
+###   Run BASELINE SGP analysis for SKIP_YEAR (one-year skip) 
+###   create new Michigan_SGP object with historical data
+#####
 
 SGPstateData[["MI"]][["Assessment_Program_Information"]][["CSEM"]] <- NULL
 
@@ -61,10 +72,6 @@ Michigan_SGP <- abcSGP(
 					WORKERS=list(BASELINE_PERCENTILES=8))
 )
 
-###   Re-set and rename prior scores (one set for sequential/cohort, another for skip-year/baseline)
-data.table::setnames(Michigan_SGP@Data,
-  c("SCALE_SCORE_PRIOR", "SCALE_SCORE_PRIOR_STANDARDIZED", "SS_PRIOR_COHORT", "SS_PRIOR_STD_COHORT"),
-  c("SCALE_SCORE_PRIOR_BASELINE", "SCALE_SCORE_PRIOR_STANDARDIZED_BASELINE", "SCALE_SCORE_PRIOR", "SCALE_SCORE_PRIOR_STANDARDIZED"))
-
+### RENAME 
 ###   Save results
 save(Michigan_SGP, file="Data/Michigan_SGP.Rdata")
