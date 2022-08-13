@@ -16,6 +16,9 @@ if (length(tmp.names <- grep("BASELINE|SS", names(Michigan_SGP@Data))) > 0) {
 		Michigan_SGP@Data[,eval(tmp.names):=NULL]
 }
 
+### NULL out OLD Goodness of Fit plots that throw error due to old grob versions
+Michigan_SGP@SGP$Goodness_of_Fit <- NULL
+
 ###   Add single-cohort baseline matrices to SGPstateData
 SGPstateData <- SGPmatrices::addBaselineMatrices("MI", "2020_2021")
 
