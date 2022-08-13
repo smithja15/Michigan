@@ -4,7 +4,7 @@
 ###                                                                                   ###
 #########################################################################################
 
-READING.2018_2019.config <- list(
+READING.2018_2019_SKIP_YEAR.config <- list(
 	READING.2018_2019 = list(
 		sgp.content.areas=rep("READING", 3),
 		sgp.panel.years=c("2015_2016", "2016_2017", "2018_2019"),

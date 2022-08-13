@@ -57,7 +57,7 @@ MI_Baseline_Matrices <- baselineSGP(
 				calculate.baseline.sgps=FALSE,
 				goodness.of.fit.print=FALSE,
 				parallel.config = list(
-					BACKEND="PARALLEL", WORKERS=list(TAUS=18))
+					BACKEND="PARALLEL", WORKERS=list(TAUS=48))
 )
 
 ###   Save results
