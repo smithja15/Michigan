@@ -71,3 +71,7 @@ Michigan_SGP_LONG_Data[,SCALE_SCORE_NON_EQUATED:=SCALE_SCORE]
 Michigan_SGP_LONG_Data[,SCALE_SCORE:=Michigan_Baseline_Data$SCALE_SCORE]
 
 save(Michigan_SGP_LONG_Data, file="Data/Michigan_SGP_LONG_Data.Rdata")
+
+load("Data/Base_Files/Michigan_SGP.Rdata")
+Michigan_SGP@Data <- Michigan_SGP_LONG_Data
+save(Michigan_SGP, file="Data/Michigan_SGP.Rdata")
