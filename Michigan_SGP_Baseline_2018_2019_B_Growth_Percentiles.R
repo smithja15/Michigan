@@ -9,7 +9,7 @@ require(SGP)
 require(data.table)
 
 ###   Load data
-load("Data/Base_Files/Michigan_SGP.Rdata")
+load("Data/Michigan_SGP.Rdata")
 
 ### Test for BASELINE related variable in LONG data and NULL out if they exist
 if (length(tmp.names <- grep("BASELINE|SS", names(Michigan_SGP@Data))) > 0) {
@@ -127,4 +127,4 @@ Michigan_SGP <- abcSGP(
 
 
 ###   Save results
-#save(Michigan_SGP, file="Data/Michigan_SGP.Rdata")
+save(Michigan_SGP, file="Data/Michigan_SGP.Rdata")

@@ -9,7 +9,7 @@ require(SGP)
 require(data.table)
 
 ###   Load the results data from the 'official' 2019 SGP analyses
-load("Data/Michigan_SGP_LONG_Data.Rdata")
+load("Data/Base_Files/Michigan_SGP_LONG_Data.Rdata")
 
 ###   Create a smaller subset of the LONG data to work with.
 Michigan_Baseline_Data <- data.table::data.table(Michigan_SGP_LONG_Data[, c("VALID_CASE", "CONTENT_AREA", "YEAR", "ID", "GRADE", "SCALE_SCORE", "ACHIEVEMENT_LEVEL"),])
@@ -69,9 +69,9 @@ setkey(Michigan_SGP_LONG_Data, VALID_CASE, CONTENT_AREA, YEAR, GRADE, ID)
 setkey(Michigan_Baseline_Data, VALID_CASE, CONTENT_AREA, YEAR, GRADE, ID)
 Michigan_SGP_LONG_Data[,SCALE_SCORE_NON_EQUATED:=SCALE_SCORE]
 Michigan_SGP_LONG_Data[,SCALE_SCORE:=Michigan_Baseline_Data$SCALE_SCORE]
-
 save(Michigan_SGP_LONG_Data, file="Data/Michigan_SGP_LONG_Data.Rdata")
 
+### Embed updated equated data into last version of Michigan_SGP
 load("Data/Base_Files/Michigan_SGP.Rdata")
 Michigan_SGP@Data <- Michigan_SGP_LONG_Data
 save(Michigan_SGP, file="Data/Michigan_SGP.Rdata")
