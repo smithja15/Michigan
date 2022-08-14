@@ -7,6 +7,10 @@
 SOCIAL_STUDIES.2018_2019_SKIP_2_YEAR.config <- list(
 	SOCIAL_STUDIES.2018_2019=list(
 		sgp.content.areas=c('SOCIAL_STUDIES', 'SOCIAL_STUDIES'),
+		sgp.panel.years=c('2014_2015', '2017_2018'),
+		sgp.grade.sequences=list(c('5', '8'))),
+	SOCIAL_STUDIES.2018_2019=list(
+		sgp.content.areas=c('SOCIAL_STUDIES', 'SOCIAL_STUDIES'),
 		sgp.panel.years=c('2015_2016', '2018_2019'),
 		sgp.grade.sequences=list(c('8', '11')))
 )
