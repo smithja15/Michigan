@@ -32,7 +32,7 @@ parallel.config <- list(BACKEND="PARALLEL", WORKERS=list(PERCENTILES=8, BASELINE
 
 Michigan_SGP <- updateSGP(
         what_sgp_object = Michigan_SGP,
-        with_sgp_data_LONG = Michigan_Data_LONG_2021,
+        with_sgp_data_LONG = Michigan_Data_LONG_2020_2021,
         steps = c("prepareSGP", "analyzeSGP", "combineSGP"),
         sgp.config = MI_2020_2021.config,
         sgp.percentiles = TRUE,
