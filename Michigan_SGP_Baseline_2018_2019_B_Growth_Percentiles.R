@@ -100,7 +100,7 @@ Michigan_SGP <- abcSGP(
         parallel.config = parallel.config 
 )
 
-baseline.names <- setdiff(grep("BASELINE", names(Michigan_SGP@Data), value = TRUE), grep("BASELINE_SKIP_2_YEAR", names(Michigan_SGP@Data), value = TRUE)baseline.names <- setdiff(grep("BASELINE", names(Michigan_SGP@Data), value = TRUE), grep("BASELINE_SKIP_2_YEAR", names(Michigan_SGP@Data), value = TRUE)))
+baseline.names <- setdiff(grep("BASELINE", names(Michigan_SGP@Data), value = TRUE), grep("BASELINE_SKIP_2_YEAR", names(Michigan_SGP@Data), value = TRUE))
 setnames(Michigan_SGP@Data, baseline.names, paste0(baseline.names, "_SKIP_YEAR"))
 
 sgps.2018_2019 <- grep(".2018_2019.BASELINE", names(Michigan_SGP@SGP[["SGPercentiles"]]))
