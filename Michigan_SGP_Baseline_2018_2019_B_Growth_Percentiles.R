@@ -36,7 +36,8 @@ source("SGP_CONFIG/2018_2019/BASELINE/Percentiles/SOCIAL_STUDIES.R")
 
 MI_2018_2019_Baseline_Config <- c(
 	READING.2018_2019.config,
-	MATHEMATICS.2018_2019.config
+	MATHEMATICS.2018_2019.config,
+        SOCIAL_STUDIES.2018_2019.config
 )
 
 MI_2018_2019_Baseline_Config_SKIP_YEAR <- c(
@@ -85,6 +86,20 @@ names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2018_2019] <- gsub(".2018_2019.B
 ###   Run BASELINE SGP analysis for 2014-2015 to 2017-2018 SOCIAL STUDIES 
 ###   To pick up this additional data 
 #####
+
+Michigan_SGP <- abcSGP(
+        sgp_object = Michigan_SGP,
+        steps = c("prepareSGP", "analyzeSGP", "combineSGP"),
+        sgp.config = MI_2017_2018_Baseline_Config_SKIP_2_YEAR,
+        sgp.percentiles = FALSE,
+        sgp.projections = FALSE,
+        sgp.projections.lagged = FALSE,
+        sgp.percentiles.baseline = TRUE,  #  Skip 2 year SGPs for 2022 comparisons
+        sgp.projections.baseline = FALSE, #  Calculated in last step
+        sgp.projections.lagged.baseline = FALSE,
+        save.intermediate.results = FALSE,
+        parallel.config = parallel.config
+)
 
 #####
 ###   Run BASELINE SGP analysis for SKIP_2_YEAR (two-year skip) 
@@ -152,4 +167,4 @@ Michigan_SGP <- abcSGP(
 
 
 ###   Save results
-save(Michigan_SGP, file="Data/Michigan_SGP.Rdata")
+#save(Michigan_SGP, file="Data/Michigan_SGP.Rdata")
