@@ -1,8 +1,9 @@
-######################################################################################
-###                                                                                ###
-###   Michigan Learning Loss Analyses -- 2018-2019 Baseline Growth Projections     ###
-###                                                                                ###
-######################################################################################
+####################################################################################################
+###                                                                                              ###
+###   Michigan Learning Loss Analyses -- 2018-2019 Baseline Growth Straight Projections          ###
+###   NOTE: Consecutive year projections (Note pretending we know about about the 2020 pandemic  ###
+###                                                                                              ###
+####################################################################################################
 
 ###   Load packages
 require(SGP)
@@ -16,9 +17,6 @@ SGPstateData <- SGPmatrices::addBaselineMatrices("MI", "2020_2021")
 ### NULL out assessment transition in 2019 (since already dealth with)
 SGPstateData[["MI"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <- NULL
 SGPstateData[["MI"]][["Assessment_Program_Information"]][["Scale_Change"]] <- NULL
-
-###   Update SGPstateData with grade/course/lag progression information
-source("SGP_CONFIG/2018_2019/BASELINE/Projections/Skip_Year_Projections_MetaData.R")
 
 ###   Read in BASELINE projections configuration scripts and combine
 source("SGP_CONFIG/2018_2019/BASELINE/Projections/READING.R")

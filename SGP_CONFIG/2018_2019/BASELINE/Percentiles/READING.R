@@ -8,7 +8,7 @@ READING.2018_2019.config <- list(
 	READING.2018_2019 = list(
 		sgp.content.areas=rep("READING", 3),
 		sgp.panel.years=c("2016_2017", "2017_2018", "2018_2019"),
-		sgp.grade.sequences=list(c("3", "4"), c("3", "4", "5"), c("4", "5", "6"), c("5", "6", "7"), c("6", "7", "8"), c("7", "8", "9"), c("8", "9", "10"), c("9", "10", "11")),
+		sgp.grade.sequences=list(c("3", "4"), c("3", "4", "5"), c("4", "5", "6"), c("5", "6", "7"), c("6", "7", "8"), c("7", "8", "9")),
 		sgp.norm.group.preference=1),
 	READING_GRADE_10_11.2018_2019=list(
 		sgp.content.areas=c('READING', 'READING', 'READING'),
