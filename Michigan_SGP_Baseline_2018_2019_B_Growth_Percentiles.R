@@ -77,9 +77,10 @@ Michigan_SGP <- abcSGP(
 baseline.names <- grep("BASELINE", names(Michigan_SGP@Data), value = TRUE)
 setnames(Michigan_SGP@Data, baseline.names, paste0(baseline.names, "_SKIP_2_YEAR"))
 
-sgps.2018_2019 <- grep(".2018_2019.BASELINE", names(Michigan_SGP@SGP[["SGPercentiles"]]))
 sgps.2017_2018 <- grep(".2017_2018.BASELINE", names(Michigan_SGP@SGP[["SGPercentiles"]]))
-names(Michigan_SGP@SGP[["SGPercentiles"]])[c(sgps.2017_2018, sgps.2018_2019)] <- gsub(".2018_2019.BASELINE", ".2018_2019.SKIP_2_YEAR_BLINE", names(Michigan_SGP@SGP[["SGPercentiles"]])[c(sgps.2017_2018, sgps.2018_2019)])
+sgps.2018_2019 <- grep(".2018_2019.BASELINE", names(Michigan_SGP@SGP[["SGPercentiles"]]))
+names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2017_2018] <- gsub(".2017_2018.BASELINE", ".2017_2018.SKIP_2_YEAR_BLINE", names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2017_2018])
+names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2018_2019] <- gsub(".2018_2019.BASELINE", ".2018_2019.SKIP_2_YEAR_BLINE", names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2018_2019])
 
 #####
 ###   Run BASELINE SGP analysis for SKIP_YEAR (one-year skip) 
