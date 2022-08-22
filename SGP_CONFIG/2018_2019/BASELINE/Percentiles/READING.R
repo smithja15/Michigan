@@ -20,13 +20,13 @@ READING.2018_2019.config <- list(
 		sgp.panel.years=c('2015_2016', '2016_2017', '2018_2019'),
 		sgp.grade.sequences=list(c('7', '8', '10'),c('8', '9', '11')),
 		sgp.norm.group.preference=2,
-		sgp.projection.grade.sequences="NO_PROJECTIONS"),
+		sgp.projection.baseline.grade.sequences="NO_PROJECTIONS"),
 	READING_GRADE_10_11.2018_2019=list(
 		sgp.content.areas=c('READING', 'READING', 'READING'),
 		sgp.panel.years=c('2014_2015', '2015_2016', '2018_2019'),
 		sgp.grade.sequences=list(c('7', '8', '11')),
 		sgp.norm.group.preference=3,
-		sgp.projection.grade.sequences="NO_PROJECTIONS")
+		sgp.projection.baseline.grade.sequences="NO_PROJECTIONS")
 )
 
 READING.2018_2019_SKIP_YEAR.config <- list(
