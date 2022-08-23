@@ -1,42 +1,90 @@
-#################################################################################
-###                                                                           ###
-###       Michigan -- Create 3-YEAR Pre-COVID Baseline Matrices 2016 to 2019  ###
-###                                                                           ###
-#################################################################################
+######################################################################################
+###                                                                                ###
+###                Michigan COVID Skip-year SGP analyses for 2021-2022             ###
+###                                                                                ###
+######################################################################################
 
-### Load necessary packages
+###   Load packages
 require(SGP)
-require(data.table)
+require(SGPmatrices)
 
-### Load the results data from the 'official' 2019 SGP analyses
-load("Data/Michigan_SGP_LONG_Data.Rdata")
+###   Load data
+load("Data/Michigan_SGP.Rdata")
+load("Data/Michigan_Data_LONG_2021_2022.Rdata")
 
-### Take data from pre-covid years (2018_2019 and prior)
-Michigan_Baseline_Data <- Michigan_SGP_LONG_Data[YEAR <= "2018_2019"][, c("VALID_CASE", "CONTENT_AREA", "YEAR", "ID", "GRADE", "SCALE_SCORE", "ACHIEVEMENT_LEVEL"), with=FALSE] 
+###   Add Baseline matrices to SGPstateData
+SGPstateData <- addBaselineMatrices("MI", "2021_2022")
+SGPstateData[["MI"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <- NULL
 
-###   Read in Baseline SGP Configuration Scripts and Combine
-source("SGP_CONFIG/2021_2022/BASELINE/Matrices/READING.R")
-source("SGP_CONFIG/2021_2022/BASELINE/Matrices/MATHEMATICS.R")
+###   Read in SGP Configuration Scripts and Combine
+source("SGP_CONFIG/2021_2022/PART_A/READING.R")
+source("SGP_CONFIG/2021_2022/PART_A/MATHEMATICS.R")
+source("SGP_CONFIG/2021_2022/PART_A/SOCIAL_STUDIES.R")
 
-MI_BASELINE_CONFIG <- c(
-	READING_BASELINE.config,
-	MATHEMATICS_BASELINE.config
+MI_2021_2022_Consecutive_Year_Config <- c(
+	READING.2021_2022.config,
+	MATHEMATICS.2021_2022.config,
+        SOCIAL_STUDIES.2021_2022.config
 )
 
-###
-###   Create Baseline Matrices
+MI_2021_2022_SKIP_2_YEAR_Config <- c(
+	READING.2021_2022_SKIP_2_YEAR.config,
+	MATHEMATICS.2021_2022_SKIP_2_YEAR.config,
+	SOCIAL_STUDIES.2021_2022_SKIP_2_YEAR.config
+)
 
-Michigan_SGP <- prepareSGP(Michigan_Baseline_Data, create.additional.variables=FALSE)
+### Parameters
+parallel.config <- list(BACKEND="PARALLEL", WORKERS=list(PERCENTILES=8, BASELINE_PERCENTILES=8, PROJECTIONS=8, LAGGED_PROJECTIONS=8, SGP_SCALE_SCORE_TARGETS=8))
 
-MI_Baseline_Matrices <- baselineSGP(
-				Michigan_SGP,
-				sgp.baseline.config=MI_BASELINE_CONFIG,
-				return.matrices.only=TRUE,
-				calculate.baseline.sgps=FALSE,
-				goodness.of.fit.print=FALSE,
-				parallel.config = list(
-					BACKEND="PARALLEL", WORKERS=list(TAUS=18))
+#####
+###   Run BASELINE SGP analysis for SKIP_2_YEAR (two-year skip) 
+###   create new Michigan_SGP object with historical data
+#####
+
+Michigan_SGP <- abcSGP(
+        sgp_object = Michigan_SGP,
+        steps = c("prepareSGP", "analyzeSGP", "combineSGP"),
+        sgp.config = MI_2021_2022_SKIP_2_YEAR_Config,
+        sgp.percentiles = TRUE,
+        sgp.projections = FALSE,
+        sgp.projections.lagged = FALSE,
+        sgp.percentiles.baseline = TRUE,  #  Skip 2 year SGPs for 2022 comparisons
+        sgp.projections.baseline = FALSE, #  Calculated in last step
+        sgp.projections.lagged.baseline = FALSE,
+        save.intermediate.results = FALSE,
+        parallel.config = parallel.config
+)
+
+from.variable.names.sgp <- c("SGP", "SGP_ORDER_1", "SGP_ORDER_1_STANDARD_ERROR", "SGP_ORDER_2", "SGP_ORDER_2_STANDARD_ERROR", "SGP_LEVEL", "SGP_NORM_GROUP", "SGP_STANDARD_ERROR")
+to.variable.names.sgp <- paste(c("SGP", "SGP_ORDER_1", "SGP_ORDER_1_STANDARD_ERROR", "SGP_ORDER_2", "SGP_ORDER_2_STANDARD_ERROR", "SGP_LEVEL", "SGP_NORM_GROUP", "SGP_STANDARD_ERROR"), "SKIP_2_YEAR", sep="_")
+from.variable.names.sgp.baseline <- c("SGP_BASELINE", "SGP_BASELINE_ORDER_1", "SGP_BASELINE_ORDER_1_STANDARD_ERROR", "SGP_BASELINE_ORDER_2", "SGP_BASELINE_ORDER_2_STANDARD_ERROR", "SGP_BASELINE_LEVEL", "SGP_BASELINE_NORM_GROUP", "SGP_BASELINE_STANDARD_ERROR")
+to.variable.names.sgp.baseline <- paste(c("SGP_BASELINE", "SGP_BASELINE_ORDER_1", "SGP_BASELINE_ORDER_1_STANDARD_ERROR", "SGP_BASELINE_ORDER_2", "SGP_BASELINE_ORDER_2_STANDARD_ERROR", "SGP_BASELINE_LEVEL", "SGP_BASELINE_NORM_GROUP", "SGP_BASELINE_STANDARD_ERROR"), "SKIP_2_YEAR", sep="_")
+Michigan_SGP@Data[YEAR=="2021_2022", (to.variable.names.sgp):=.SD, .SDcols=from.variable.names.sgp]
+Michigan_SGP@Data[YEAR=="2021_2022", (to.variable.names.sgp.baseline):=.SD, .SDcols=from.variable.names.sgp.baseline]
+
+sgps.2021_2022.baseline <- grep(".2021_2022.BASELINE", names(Michigan_SGP@SGP[["SGPercentiles"]]))
+sgps.2021_2022 <- setdiff(grep(".2021_2022", names(Michigan_SGP@SGP[["SGPercentiles"]])), sgps.2021_2022.baseline) 
+names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022.baseline] <- gsub(".2021_2022.BASELINE", ".2021_2022.SKIP_2_YEAR_BLINE", names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022.baseline])
+names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022] <- gsub(".2021_2022.", ".2021_2022.SKIP_2_YEAR", names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022])
+
+#####
+###   Run BASELINE SGP analysis for consecutive year
+###   create new Michigan_SGP object with historical data
+#####
+
+Michigan_SGP <- abcSGP(
+        sgp_object = Michigan_SGP,
+        steps = c("prepareSGP", "analyzeSGP", "combineSGP", "outputSGP"),
+        sgp.config = MI_2021_2022_Consecutive_Year_Config,
+        sgp.percentiles = TRUE,
+        sgp.projections = FALSE,
+        sgp.projections.lagged = FALSE,
+        sgp.percentiles.baseline = TRUE,  #  Consecutive year SGPs for 2021 comparisons
+        sgp.projections.baseline = FALSE, # 
+        sgp.projections.lagged.baseline = FALSE,
+        save.intermediate.results = FALSE,
+        parallel.config = parallel.config
 )
 
 ###   Save results
-save(MI_Baseline_Matrices, file="Data/MI_Baseline_Matrices.Rdata")
+#save(Michigan_SGP, file="Data/Michigan_SGP.Rdata")

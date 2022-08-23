@@ -1,49 +1,119 @@
-################################################################################
-###                                                                          ###
-###                Michigan SGP analyses for 2022                             ###
-###                                                                          ###
-################################################################################
+#####################################################################################
+###                                                                               ###
+###           SGP LAGGED projections for skip year SGP analyses for 2021-2022     ###
+###                                                                               ###
+#####################################################################################
 
 ###   Load packages
 require(SGP)
 require(SGPmatrices)
+require(data.table)
 
 ###   Load data
 load("Data/Michigan_SGP.Rdata")
-load("Data/Michigan_Data_LONG_2022.Rdata")
 
-###   Add Baseline matrices to SGPstateData
-SGPstateData <- addBaselineMatrices("MI", "2022")
-SGPstateData[["MI"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <- NULL
-
-###   Read in SGP Configuration Scripts and Combine
-source("SGP_CONFIG/2021_2022/PART_C/ELA.R")
+###   Load configurations
+source("SGP_CONFIG/2021_2022/PART_C/READING.R")
 source("SGP_CONFIG/2021_2022/PART_C/MATHEMATICS.R")
 
-MI_CONFIG <- c(ELA_2022.config, MATHEMATICS_2022.config)
+MI_2021_2022.config <- c(READING_2021_2022.config, MATHEMATICS_2021_2022.config)
 
 ### Parameters
 parallel.config <- list(BACKEND="PARALLEL", WORKERS=list(PERCENTILES=4, BASELINE_PERCENTILES=4, PROJECTIONS=4, LAGGED_PROJECTIONS=4, SGP_SCALE_SCORE_TARGETS=4))
 
-#####
-###   Run updateSGP analysis
-#####
+###   Setup SGPstateData with baseline coefficient matrices grade specific projection sequences
 
-Michigan_SGP <- updateSGP(
-        what_sgp_object = Michigan_SGP,
-        with_sgp_data_LONG = Michigan_Data_LONG_2022,
-        steps = c("prepareSGP", "analyzeSGP", "combineSGP"),
-        sgp.config = MI_CONFIG,
-        sgp.percentiles = TRUE,
-        sgp.projections = TRUE,
-        sgp.projections.lagged = TRUE,
-        sgp.percentiles.baseline = TRUE,
-        sgp.projections.baseline = TRUE,
-        sgp.projections.lagged.baseline = TRUE,
-        save.intermediate.results = FALSE,
-        parallel.config = parallel.config
+###   Add Baseline matrices to SGPstateData and update SGPstateData
+SGPstateData <- addBaselineMatrices("MI", "2021_2022")
+SGPstateData[["MI"]][["Growth"]][["System_Type"]] <- "Baseline Referenced"
+SGPstateData[["MI"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <- NULL
+
+#  Establish required meta-data for LAGGED projection sequences
+SGPstateData[["MI"]][["SGP_Configuration"]][["grade.projection.sequence"]] <- list(
+    READING_GRADE_3=c(3, 4, 5, 6, 7, 8, 9, 10, 11),
+    READING_GRADE_4=c(3, 4, 5, 6, 7, 8, 9, 10, 11),
+    READING_GRADE_5=c(3, 5, 6, 7, 8, 9, 10, 11),
+    READING_GRADE_6=c(3, 4, 6, 7, 8, 9, 10, 11),
+    READING_GRADE_7=c(3, 4, 5, 7, 8, 9, 10, 11),
+    READING_GRADE_8=c(3, 4, 5, 6, 8, 9, 10, 11),
+    READING_GRADE_9=c(3, 4, 5, 6, 7, 9, 10, 11),
+    READING_GRADE_10=c(3, 4, 5, 6, 7, 8, 10, 11),
+    READING_GRADE_11=c(3, 4, 5, 6, 7, 8, 9, 11),
+    READING_GRADE_8_to_11=c(3, 4, 5, 6, 7, 8, 11),
+    MATHEMATICS_GRADE_3=c(3, 4, 5, 6, 7, 8, 9, 10, 11),
+    MATHEMATICS_GRADE_4=c(3, 4, 5, 6, 7, 8, 9, 10, 11),
+    MATHEMATICS_GRADE_5=c(3, 5, 6, 7, 8, 9, 10, 11),
+    MATHEMATICS_GRADE_6=c(3, 4, 6, 7, 8, 9, 10, 11),
+    MATHEMATICS_GRADE_7=c(3, 4, 5, 7, 8, 9, 10, 11),
+    MATHEMATICS_GRADE_8=c(3, 4, 5, 6, 8, 9, 10, 11),
+    MATHEMATICS_GRADE_9=c(3, 4, 5, 6, 7, 9, 10, 11),
+    MATHEMATICS_GRADE_10=c(3, 4, 5, 6, 7, 8, 10, 11),
+    MATHEMATICS_GRADE_11=c(3, 4, 5, 6, 7, 8, 9, 11),
+    MATHEMATICS_GRADE_8_to_11=c(3, 4, 5, 6, 7, 8, 11))
+SGPstateData[["MI"]][["SGP_Configuration"]][["content_area.projection.sequence"]] <- list(
+    READING_GRADE_3=rep("READING", 9),
+    READING_GRADE_4=rep("READING", 9),
+    READING_GRADE_5=rep("READING", 8),
+    READING_GRADE_6=rep("READING", 8),
+    READING_GRADE_7=rep("READING", 8),
+    READING_GRADE_8=rep("READING", 8),
+    READING_GRADE_9=rep("READING", 8),
+    READING_GRADE_10=rep("READING", 8),
+    READING_GRADE_11=rep("READING", 8),
+    READING_GRADE_8_to_11=rep("READING", 7),
+    MATHEMATICS_GRADE_3=rep("MATHEMATICS", 9),
+    MATHEMATICS_GRADE_4=rep("MATHEMATICS", 9),
+    MATHEMATICS_GRADE_5=rep("MATHEMATICS", 8),
+    MATHEMATICS_GRADE_6=rep("MATHEMATICS", 8),
+    MATHEMATICS_GRADE_7=rep("MATHEMATICS", 8),
+    MATHEMATICS_GRADE_8=rep("MATHEMATICS", 8),
+    MATHEMATICS_GRADE_9=rep("MATHEMATICS", 8),
+    MATHEMATICS_GRADE_10=rep("MATHEMATICS", 8),
+    MATHEMATICS_GRADE_11=rep("MATHEMATICS", 8),
+    MATHEMATICS_GRADE_8_to_11=rep("MATHEMATICS", 7))
+SGPstateData[["MI"]][["SGP_Configuration"]][["max.forward.projection.sequence"]] <- list(
+    READING_GRADE_3=7,
+    READING_GRADE_4=7,
+    READING_GRADE_5=7,
+    READING_GRADE_6=7,
+    READING_GRADE_7=7,
+    READING_GRADE_8=7,
+    READING_GRADE_9=7,
+    READING_GRADE_10=7,
+    READING_GRADE_11=7,
+    READING_GRADE_8_to_11=7,
+    MATHEMATICS_GRADE_3=7,
+    MATHEMATICS_GRADE_4=7,
+    MATHEMATICS_GRADE_5=7,
+    MATHEMATICS_GRADE_6=7,
+    MATHEMATICS_GRADE_7=7,
+    MATHEMATICS_GRADE_8=7,
+    MATHEMATICS_GRADE_9=7,
+    MATHEMATICS_GRADE_10=7,
+    MATHEMATICS_GRADE_11=7,
+    MATHEMATICS_GRADE_8_to_11=7)
+
+SGPstateData[["MI"]][['SGP_Progression_Preference']] <- data.table(
+	SGP_PROJECTION_GROUP = c("MATHEMATICS_8_to_11", "READING_8_to_11", "MATHEMATICS_11", "READING_11"),
+	PREFERENCE = c(1, 1, 2, 2), key = "SGP_PROJECTION_GROUP")
+
+
+### Run analysis
+Michigan_SGP <- abcSGP(
+        Michigan_SGP,
+        years="2021_2022",
+        steps=c("prepareSGP", "analyzeSGP", "combineSGP", "outputSGP"),
+        sgp.config=MI_2021_2022.config,
+        sgp.percentiles=FALSE,
+        sgp.projections=FALSE,
+        sgp.projections.lagged=FALSE,
+        sgp.percentiles.baseline=FALSE,
+        sgp.projections.baseline=FALSE,
+        sgp.projections.lagged.baseline=TRUE,
+        sgp.target.scale.scores=TRUE,
+        parallel.config=parallel.config
 )
 
 
-###   Save results
+###  Save results
 save(Michigan_SGP, file="Data/Michigan_SGP.Rdata")

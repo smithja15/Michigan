@@ -1,77 +1,67 @@
-###############################################################################
-###                                                                         ###
-###          Michigan 2019 consecutive-year BASELINE SGP analyses           ###
-###          NOTE: Doing this in 2022 thus the file name                    ###
-###                                                                         ###
-###############################################################################
+################################################################################
+###                                                                          ###
+###          SGP STRAIGHT projections for skip year SGP analyses for 2021    ###
+###                                                                          ###
+################################################################################
 
 ###   Load packages
 require(SGP)
-require(data.table)
 require(SGPmatrices)
+require(data.table)
 
 ###   Load data
 load("Data/Michigan_SGP.Rdata")
 
+###   Load configurations
+source("SGP_CONFIG/2020_2021/PART_B/READING.R")
+source("SGP_CONFIG/2020_2021/PART_B/MATHEMATICS.R")
+
+MI_2020_2021.config <- c(READING_2020_2021.config, MATHEMATICS_2020_2021.config)
+
+### Parameters
+parallel.config <- list(BACKEND="PARALLEL", WORKERS=list(PERCENTILES=8, BASELINE_PERCENTILES=8, PROJECTIONS=8, LAGGED_PROJECTIONS=8, SGP_SCALE_SCORE_TARGETS=8))
+
 ###   Add Baseline matrices to SGPstateData
 SGPstateData <- addBaselineMatrices("MI", "2021")
-SGPstateData[["MI"]][["Assessment_Program_Information"]][["CSEM"]] <- NULL
+SGPstateData[["MI"]][["SGP_Configuration"]][["sgp.target.scale.scores.merge"]] <- NULL ### WAIT UNTIL AFTER PART C TO MERGE
+SGPstateData[["MI"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <- NULL
 
-###   Rename the skip-year SGP variables and objects
+#  Establish required meta-data for STRAIGHT projection sequences
+SGPstateData[["MI"]][["SGP_Configuration"]][["grade.projection.sequence"]] <- list(
+    READING=c(3, 4, 5, 6, 7, 8, 9, 10, 11),
+    READING_GRADE_8_to_11=c(3, 4, 5, 6, 7, 8, 11),
+    MATHEMATICS=c(3, 4, 5, 6, 7, 8, 9, 10, 11),
+    MATHEMATICS_GRADE_8_to_11=c(3, 4, 5, 6, 7, 8, 11))
+SGPstateData[["MI"]][["SGP_Configuration"]][["content_area.projection.sequence"]] <- list(
+    READING=rep("READING", 9),
+    READING_GRADE_8_to_11=rep("READING", 7),
+    MATHEMATICS=rep("MATHEMATICS", 9),
+    MATHEMATICS_GRADE_8_to_11=rep("MATHEMATICS", 7))
+SGPstateData[["MI"]][["SGP_Configuration"]][["max.forward.projection.sequence"]] <- list(
+    READING=7,
+    READING_GRADE_8_to_11=7,
+    MATHEMATICS=7,
+    MATHEMATICS_GRADE_8_to_11=7)
 
-##    We can simply rename the BASELINE variables. We only have 2019/21 skip yr
-# table(Michigan_SGP@Data[!is.na(SGP_BASELINE),
-#         .(CONTENT_AREA, YEAR), GRADE], exclude = NULL)
-baseline.names <- grep("BASELINE", names(Michigan_SGP@Data), value = TRUE)
-setnames(Michigan_SGP@Data,
-         baseline.names,
-         paste0(baseline.names, "_SKIP_YEAR"))
+SGPstateData[["MI"]][['SGP_Progression_Preference']] <- data.table(
+	SGP_PROJECTION_GROUP = c("MATHEMATICS_8_to_11", "READING_8_to_11", "MATHEMATICS", "READING"),
+	PREFERENCE = c(1, 1, 2, 2), key = "SGP_PROJECTION_GROUP")
 
-sgps.2019 <- grep(".2019.BASELINE", names(Michigan_SGP@SGP[["SGPercentiles"]]))
-names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2019] <-
-    gsub(".2019.BASELINE",
-         ".2019.SKIP_YEAR_BASELINE",
-         names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2019])
-
-
-###   Read in SGP Configuration Scripts and Combine
-source("SGP_CONFIG/2022/PART_A/ELA.R")
-source("SGP_CONFIG/2022/PART_A/MATHEMATICS.R")
-
-MI_Baseline_Config_2019 <- c(
-  ELA.2019.config,
-  ELA_PSAT_9.2019.config,
-  ELA_PSAT_10.2019.config,
-  ELA_SAT.2019.config,
-
-  MATHEMATICS.2019.config,
-  MATHEMATICS_PSAT_9.2019.config,
-  MATHEMATICS_PSAT_10.2019.config,
-  MATHEMATICS_SAT.2019.config
+###   Run analysis
+Michigan_SGP <- abcSGP(
+        Michigan_SGP,
+        years = "2020_2021",
+        steps=c("prepareSGP", "analyzeSGP", "combineSGP"),
+        sgp.config=MI_2020_2021.config,
+        sgp.percentiles=FALSE,
+        sgp.projections=FALSE,
+        sgp.projections.lagged=FALSE,
+        sgp.percentiles.baseline=FALSE,
+        sgp.projections.baseline=TRUE,
+        sgp.projections.lagged.baseline=FALSE,
+        sgp.target.scale.scores=TRUE,
+        parallel.config=parallel.config
 )
 
-###   Parallel Config
-parallel.config <- list(BACKEND = "PARALLEL",
-                        WORKERS = list(BASELINE_PERCENTILES = 8))
-
-
-#####
-###   Run abcSGP analysis
-#####
-
-Michigan_SGP <-
-    abcSGP(sgp_object = Michigan_SGP,
-           years = "2019",
-           steps = c("prepareSGP", "analyzeSGP", "combineSGP"),
-           sgp.config = MI_Baseline_Config_2019,
-           sgp.percentiles = FALSE,
-           sgp.projections = FALSE,
-           sgp.projections.lagged = FALSE,
-           sgp.percentiles.baseline = TRUE,
-           sgp.projections.baseline = FALSE,
-           sgp.projections.lagged.baseline = FALSE,
-           simulate.sgps = FALSE,
-           parallel.config = parallel.config)
-
 ###   Save results
-save(Michigan_SGP, file = "Data/Michigan_SGP.Rdata")
+save(Michigan_SGP, file="Data/Michigan_SGP.Rdata")
