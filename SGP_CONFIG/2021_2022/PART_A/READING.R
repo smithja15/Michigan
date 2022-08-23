@@ -14,7 +14,7 @@ READING.2021_2022.config <- list(
 		sgp.content.areas=c('READING', 'READING', 'READING'),
 		sgp.panel.years=c('2017_2018', '2018_2019', '2021_2022'),
 		sgp.grade.sequences=list(c('7', '8', '11')),
-		sgp.norm.group.preference=2,
+		sgp.norm.group.preference=2)
 )
 
 READING.2021_2022_SKIP_2_YEAR.config <- list(
