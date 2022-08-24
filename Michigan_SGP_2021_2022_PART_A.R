@@ -1,6 +1,7 @@
 ######################################################################################
 ###                                                                                ###
-###                Michigan COVID Skip-year SGP analyses for 2021-2022             ###
+###                Michigan COVID Skip-year & Consecutive-year                     ###
+###                SGP analyses for 2021-2022                                      ###
 ###                                                                                ###
 ######################################################################################
 
@@ -58,15 +59,15 @@ Michigan_SGP <- updateSGP(
 
 from.variable.names.sgp <- c("SGP", "SGP_ORDER_1", "SGP_ORDER_1_STANDARD_ERROR", "SGP_ORDER_2", "SGP_ORDER_2_STANDARD_ERROR", "SGP_LEVEL", "SGP_NORM_GROUP", "SGP_STANDARD_ERROR")
 to.variable.names.sgp <- paste(c("SGP", "SGP_ORDER_1", "SGP_ORDER_1_STANDARD_ERROR", "SGP_ORDER_2", "SGP_ORDER_2_STANDARD_ERROR", "SGP_LEVEL", "SGP_NORM_GROUP", "SGP_STANDARD_ERROR"), "SKIP_2_YEAR", sep="_")
-from.variable.names.sgp.baseline <- c("SGP_BASELINE", "SGP_BASELINE_ORDER_1", "SGP_BASELINE_ORDER_1_STANDARD_ERROR", "SGP_BASELINE_ORDER_2", "SGP_BASELINE_ORDER_2_STANDARD_ERROR", "SGP_BASELINE_LEVEL", "SGP_BASELINE_NORM_GROUP", "SGP_BASELINE_STANDARD_ERROR")
-to.variable.names.sgp.baseline <- paste(c("SGP_BASELINE", "SGP_BASELINE_ORDER_1", "SGP_BASELINE_ORDER_1_STANDARD_ERROR", "SGP_BASELINE_ORDER_2", "SGP_BASELINE_ORDER_2_STANDARD_ERROR", "SGP_BASELINE_LEVEL", "SGP_BASELINE_NORM_GROUP", "SGP_BASELINE_STANDARD_ERROR"), "SKIP_2_YEAR", sep="_")
+from.variable.names.sgp.baseline <- c("SGP_BASELINE", "SGP_BASELINE_ORDER_1", "SGP_BASELINE_ORDER_1_STANDARD_ERROR", "SGP_BASELINE_ORDER_2", "SGP_BASELINE_ORDER_2_STANDARD_ERROR", "SGP_LEVEL_BASELINE", "SGP_NORM_GROUP_BASELINE", "SGP_BASELINE_STANDARD_ERROR")
+to.variable.names.sgp.baseline <- paste(c("SGP_BASELINE", "SGP_BASELINE_ORDER_1", "SGP_BASELINE_ORDER_1_STANDARD_ERROR", "SGP_BASELINE_ORDER_2", "SGP_BASELINE_ORDER_2_STANDARD_ERROR", "SGP_LEVEL_BASELINE", "SGP_NORM_GROUP_BASELINE", "SGP_BASELINE_STANDARD_ERROR"), "SKIP_2_YEAR", sep="_")
 Michigan_SGP@Data[YEAR=="2021_2022", (to.variable.names.sgp):=.SD, .SDcols=from.variable.names.sgp]
 Michigan_SGP@Data[YEAR=="2021_2022", (to.variable.names.sgp.baseline):=.SD, .SDcols=from.variable.names.sgp.baseline]
 
 sgps.2021_2022.baseline <- grep(".2021_2022.BASELINE", names(Michigan_SGP@SGP[["SGPercentiles"]]))
 sgps.2021_2022 <- setdiff(grep(".2021_2022", names(Michigan_SGP@SGP[["SGPercentiles"]])), sgps.2021_2022.baseline) 
 names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022.baseline] <- gsub(".2021_2022.BASELINE", ".2021_2022.BASELINE.SKIP_2_YEAR", names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022.baseline])
-names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022] <- gsub(".2021_2022.", ".2021_2022.SKIP_2_YEAR", names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022])
+names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022] <- gsub(".2021_2022", ".2021_2022.SKIP_2_YEAR", names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022])
 
 #####
 ###   Run BASELINE SGP analysis for consecutive year

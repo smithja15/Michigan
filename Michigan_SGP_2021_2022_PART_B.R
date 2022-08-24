@@ -1,8 +1,8 @@
-################################################################################
-###                                                                          ###
-###          SGP STRAIGHT projections for skip year SGP analyses for 2021    ###
-###                                                                          ###
-################################################################################
+###########################################################################
+###                                                                     ###
+###     SGP STRAIGHT projections for skip year SGP analyses for 2022    ###
+###                                                                     ###
+###########################################################################
 
 ###   Load packages
 require(SGP)
@@ -13,10 +13,10 @@ require(data.table)
 load("Data/Michigan_SGP.Rdata")
 
 ###   Load configurations
-source("SGP_CONFIG/2020_2021/PART_B/READING.R")
-source("SGP_CONFIG/2020_2021/PART_B/MATHEMATICS.R")
+source("SGP_CONFIG/2021_2022/PART_B/READING.R")
+source("SGP_CONFIG/2021_2022/PART_B/MATHEMATICS.R")
 
-MI_2020_2021.config <- c(READING_2020_2021.config, MATHEMATICS_2020_2021.config)
+MI_2021_2022.config <- c(READING_2021_2022.config, MATHEMATICS_2021_2022.config)
 
 ### Parameters
 parallel.config <- list(BACKEND="PARALLEL", WORKERS=list(PERCENTILES=8, BASELINE_PERCENTILES=8, PROJECTIONS=8, LAGGED_PROJECTIONS=8, SGP_SCALE_SCORE_TARGETS=8))
@@ -50,9 +50,9 @@ SGPstateData[["MI"]][['SGP_Progression_Preference']] <- data.table(
 ###   Run analysis
 Michigan_SGP <- abcSGP(
         Michigan_SGP,
-        years = "2020_2021",
+        years = "2021_2022",
         steps=c("prepareSGP", "analyzeSGP", "combineSGP"),
-        sgp.config=MI_2020_2021.config,
+        sgp.config=MI_2021_2022.config,
         sgp.percentiles=FALSE,
         sgp.projections=FALSE,
         sgp.projections.lagged=FALSE,
