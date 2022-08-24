@@ -73,7 +73,7 @@ MATHEMATICS_2021_2022.config <- list(
        sgp.content.areas=c("MATHEMATICS", "MATHEMATICS"),
        sgp.baseline.content.areas=c("MATHEMATICS", "MATHEMATICS"),
        sgp.baseline.panel.years=c("2017_2018", "2021_2022"),
-       sgp.panel.years=c("2017_2018", "2021_2022"),
+       sgp.panel.years=c("2020_2021", "2021_2022"),
        sgp.grade.sequences=list(c("8", "9")),
        sgp.baseline.grade.sequences=list(c("8", "9")),
        sgp.projection.baseline.content.areas=c("MATHEMATICS"),
