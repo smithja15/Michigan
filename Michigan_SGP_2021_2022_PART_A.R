@@ -34,23 +34,24 @@ MI_2021_2022_SKIP_2_YEAR_Config <- c(
 )
 
 ### Parameters
-parallel.config <- list(BACKEND="PARALLEL", WORKERS=list(PERCENTILES=8, BASELINE_PERCENTILES=8, PROJECTIONS=8, LAGGED_PROJECTIONS=8, SGP_SCALE_SCORE_TARGETS=8))
+parallel.config <- list(BACKEND="PARALLEL", WORKERS=list(PERCENTILES=4, BASELINE_PERCENTILES=4, PROJECTIONS=4, LAGGED_PROJECTIONS=4, SGP_SCALE_SCORE_TARGETS=4))
 
 #####
 ###   Run BASELINE SGP analysis for SKIP_2_YEAR (two-year skip) 
 ###   create new Michigan_SGP object with historical data
 #####
 
-Michigan_SGP <- abcSGP(
-        sgp_object = Michigan_SGP,
+Michigan_SGP <- updateSGP(
+        what_sgp_object = Michigan_SGP,
+        with_sgp_data_LONG = Michigan_Data_LONG_2021_2022,
         steps = c("prepareSGP", "analyzeSGP", "combineSGP"),
         sgp.config = MI_2021_2022_SKIP_2_YEAR_Config,
         sgp.percentiles = TRUE,
         sgp.projections = FALSE,
         sgp.projections.lagged = FALSE,
-        sgp.percentiles.baseline = TRUE,  #  Skip 2 year SGPs for 2022 comparisons
-        sgp.projections.baseline = FALSE, #  Calculated in last step
-        sgp.projections.lagged.baseline = FALSE,
+        sgp.percentiles.baseline = TRUE,  # Skip 2 year SGPs for 2022 comparisons
+        sgp.projections.baseline = FALSE, # Calculated in next step
+        sgp.projections.lagged.baseline = FALSE, # Calculated in last step
         save.intermediate.results = FALSE,
         parallel.config = parallel.config
 )
@@ -64,7 +65,7 @@ Michigan_SGP@Data[YEAR=="2021_2022", (to.variable.names.sgp.baseline):=.SD, .SDc
 
 sgps.2021_2022.baseline <- grep(".2021_2022.BASELINE", names(Michigan_SGP@SGP[["SGPercentiles"]]))
 sgps.2021_2022 <- setdiff(grep(".2021_2022", names(Michigan_SGP@SGP[["SGPercentiles"]])), sgps.2021_2022.baseline) 
-names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022.baseline] <- gsub(".2021_2022.BASELINE", ".2021_2022.SKIP_2_YEAR_BLINE", names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022.baseline])
+names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022.baseline] <- gsub(".2021_2022.BASELINE", ".2021_2022.BASELINE.SKIP_2_YEAR", names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022.baseline])
 names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022] <- gsub(".2021_2022.", ".2021_2022.SKIP_2_YEAR", names(Michigan_SGP@SGP[["SGPercentiles"]])[sgps.2021_2022])
 
 #####

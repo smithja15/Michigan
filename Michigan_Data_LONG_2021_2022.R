@@ -15,6 +15,7 @@ Michigan_Data_LONG_2021_2022 <- dat2122
 Michigan_Data_LONG_2021_2022[,ID:=as.character((ID))]
 Michigan_Data_LONG_2021_2022[,GRADE:=as.character((GRADE))]
 Michigan_Data_LONG_2021_2022[,SCALE_SCORE:=as.numeric((SCALE_SCORE))]
+Michigan_Data_LONG_2021_2022[CONTENT_AREA=="SCIENCE", VALID_CASE:="INVALID_CASE"]
 
 ### Save file
 save(Michigan_Data_LONG_2021_2022, file="Data/Michigan_Data_LONG_2021_2022.Rdata")
