@@ -1,9 +1,9 @@
-######################################################################################
-###                                                                                ###
-###                Michigan COVID Skip-year & Consecutive-year                     ###
-###                SGP analyses for 2021-2022                                      ###
-###                                                                                ###
-######################################################################################
+########################################################################################
+###                                                                                  ###
+###                Michigan COVID Skip-2-year & Consecutive-year                     ###
+###                SGP analyses for 2021-2022                                        ###
+###                                                                                  ###
+########################################################################################
 
 ###   Load packages
 require(SGP)
@@ -57,6 +57,7 @@ Michigan_SGP <- updateSGP(
         parallel.config = parallel.config
 )
 
+### Rename variables and data.tables appending SKIP_2_YEAR to names
 from.variable.names.sgp <- c("SGP", "SGP_ORDER_1", "SGP_ORDER_1_STANDARD_ERROR", "SGP_ORDER_2", "SGP_ORDER_2_STANDARD_ERROR", "SGP_LEVEL", "SGP_NORM_GROUP", "SGP_STANDARD_ERROR")
 to.variable.names.sgp <- paste(c("SGP", "SGP_ORDER_1", "SGP_ORDER_1_STANDARD_ERROR", "SGP_ORDER_2", "SGP_ORDER_2_STANDARD_ERROR", "SGP_LEVEL", "SGP_NORM_GROUP", "SGP_STANDARD_ERROR"), "SKIP_2_YEAR", sep="_")
 from.variable.names.sgp.baseline <- c("SGP_BASELINE", "SGP_BASELINE_ORDER_1", "SGP_BASELINE_ORDER_1_STANDARD_ERROR", "SGP_BASELINE_ORDER_2", "SGP_BASELINE_ORDER_2_STANDARD_ERROR", "SGP_LEVEL_BASELINE", "SGP_NORM_GROUP_BASELINE", "SGP_BASELINE_STANDARD_ERROR")
@@ -89,4 +90,4 @@ Michigan_SGP <- abcSGP(
 )
 
 ###   Save results
-#save(Michigan_SGP, file="Data/Michigan_SGP.Rdata")
+save(Michigan_SGP, file="Data/Michigan_SGP.Rdata")
