@@ -44,7 +44,7 @@ SGPstateData[["MI"]][["SGP_Configuration"]][["max.forward.projection.sequence"]]
     MATHEMATICS_GRADE_8_to_11=7)
 
 SGPstateData[["MI"]][['SGP_Progression_Preference']] <- data.table(
-	SGP_PROJECTION_GROUP = c("MATHEMATICS_8_to_11", "READING_8_to_11", "MATHEMATICS", "READING"),
+	SGP_PROJECTION_GROUP = c("MATHEMATICS_GRADE_8_to_11", "READING_GRADE_8_to_11", "MATHEMATICS", "READING"),
 	PREFERENCE = c(1, 1, 2, 2), key = "SGP_PROJECTION_GROUP")
 
 ###   Run analysis
