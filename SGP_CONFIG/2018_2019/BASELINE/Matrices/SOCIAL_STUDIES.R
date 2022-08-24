@@ -7,7 +7,7 @@
 SOCIAL_STUDIES_BASELINE.config <- list(
 	list(
 		sgp.baseline.content.areas=rep("SOCIAL_STUDIES", 2),
-		sgp.baseline.panel.years=c("2014_2015", "2017_2018"),
+		sgp.baseline.panel.years=c("2015_2016", "2018_2019"),
 		sgp.baseline.grade.sequences=c("5", "8"),
 		sgp.baseline.grade.sequences.lags=3),
 	list(
